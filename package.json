@@ -1,0 +1,28 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "to do list project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "s":"live-server",
+    "w":"npx webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrea-maiolo/toDo.git"
+  },
+  "author": "Andrea Maiolo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrea-maiolo/toDo/issues"
+  },
+  "homepage": "https://github.com/andrea-maiolo/toDo#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0"
+  }
+}
