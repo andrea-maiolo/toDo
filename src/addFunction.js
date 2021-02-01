@@ -1,6 +1,5 @@
 import {tasks} from './taskFactory.js';
 import {Task} from './taskFactory.js';
-import {display} from './displayTask.js';
 
 
 const addToList = function(){
@@ -12,17 +11,36 @@ const addToList = function(){
     let schedule = document.querySelector('#taskDate');
 
     function addingTask() {
-        if(title.value != "" ){
-            let newTask = new Task (title.value);
+        if(title.value != "" && description.value != "" && schedule.value != ""){
+            let newTask = new Task (title.value, description.value, schedule.value);
             tasks.push(newTask);
-            console.log(tasks)  
+            display(newTask);
         }
-        // if ((title.value != '' && description.value != '' && schedule.value != '')){
-        //     let newTask = new Task (title.value, description.value, schedule.value);
-        //     tasksList.push(newTask);
-        // }
     }
     
+
+    let display = function(element){
+        const taskList = document.querySelector('#taskList');
+    
+        let myTask = document.createElement('div');
+        myTask.classList.add('tasks');
+        let myTaskTitle = document.createElement('p');
+        myTaskTitle.classList.add('pOfTask');
+        myTaskTitle.innerHTML = element.title;
+        let myTaskDescription = document.createElement('p');
+        myTaskDescription.classList.add('pOfTask');
+        myTaskDescription.innerHTML = element.description;
+        let myTaskSchedule = document.createElement('p');
+        myTaskSchedule.classList.add('pOfTask');
+        myTaskSchedule.innerHTML = element.schedule;
+    
+        //create a button that can remove the books from libra
+            myTask.appendChild(myTaskTitle);
+            myTask.appendChild(myTaskDescription);
+            myTask.appendChild(myTaskSchedule);
+            taskList.appendChild(myTask);
+    }
+
     return addingTask
 }
 

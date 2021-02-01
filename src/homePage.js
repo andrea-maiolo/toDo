@@ -2,6 +2,7 @@ const generateHomePage = (function(){
     const main = document.querySelector('#main');
 
     const header = document.createElement('header');
+    header.classList.add('header');
     const h1Title = document.createElement('h1');
     h1Title.id = "title";
     h1Title.innerHTML = "TO DO's list from Andy";
@@ -35,7 +36,7 @@ const generateHomePage = (function(){
     main.appendChild(aside);
 
     const content = document.createElement('div');
-    content.id="content";
+    content.classList.add("content");
 
     const newTask = document.createElement('div');
     const bNew = document.createElement('button');

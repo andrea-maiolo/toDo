@@ -6,8 +6,5 @@ function Task(title, description, schedule){
     this.schedule = schedule;
 }
 
-let t1 = new Task('first task', 'this is a test', 10);
-tasks.push(t1);
-
 export {tasks}
 export {Task}
