@@ -26,6 +26,8 @@ const generateHomePage = (function(){
     addCategory.id="addCategory";
     addCategory.type="button";
     addCategory.innerHTML="Add";
+    const categoryList = document.createElement('div');
+    categoryList.id = "categoryList";
 
     categoryForm.appendChild(newCategory);
     categoryForm.appendChild(addCategory);
@@ -33,6 +35,7 @@ const generateHomePage = (function(){
     aside.appendChild(categories);
     aside.appendChild(showCategoryForm);
     aside.appendChild(categoryForm);
+    aside.appendChild(categoryList);
     main.appendChild(aside);
 
     const content = document.createElement('div');
