@@ -1,4 +1,4 @@
-import {tasks} from './taskFactory.js';
+import {tasksGeneral} from './taskFactory.js';
 
 
 let display = function(element){

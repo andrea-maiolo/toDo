@@ -1,4 +1,4 @@
-import {tasks} from './taskFactory.js';
+import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 
 
@@ -11,9 +11,9 @@ const addToList = function(){
     let schedule = document.querySelector('#taskDate');
 
     function addingTask() {
-        if(title.value != "" && description.value != "" && schedule.value != ""){
+        if(title.value != "" && schedule.value != ""){
             let newTask = new Task (title.value, description.value, schedule.value);
-            tasks.push(newTask);
+            tasksGeneral.push(newTask);
             display(newTask);
         }
     }
@@ -39,6 +39,8 @@ const addToList = function(){
             myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
             taskList.appendChild(myTask);
+
+            console.log(tasksGeneral)
     }
 
     return addingTask
