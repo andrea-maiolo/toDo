@@ -40,7 +40,6 @@ const addToList = function(){
             myTask.appendChild(myTaskSchedule);
             taskList.appendChild(myTask);
 
-            console.log(tasksGeneral)
     }
 
     return addingTask

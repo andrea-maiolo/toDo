@@ -1,5 +1,5 @@
 
-const categoryDisplay = function(){
+const categoryFormDisplay = function(){
     const showCategoryForm = document.querySelector('#showCategoryForm');
     showCategoryForm.addEventListener('click', show);
 
@@ -11,4 +11,4 @@ const categoryDisplay = function(){
     return show
 }
 
-export {categoryDisplay}
+export {categoryFormDisplay}

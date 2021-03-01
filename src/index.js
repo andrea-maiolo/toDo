@@ -1,13 +1,13 @@
 import {generateHomePage} from './homePage.js';
 import {formDisplay} from './formDisplay.js';
-import {categoryDisplay} from './categoryDisplay.js';
+import {categoryFormDisplay} from './categoryFormDisplay.js';
 import {addCategory} from './addCategory.js';
 import {addToList} from './addTaskFunction.js';
 import {clearList} from './clearFunction.js';
 import {tasksGeneral} from './taskFactory.js';
 
 formDisplay();
-categoryDisplay();
+categoryFormDisplay();
 addToList();
 clearList();
 addCategory();

@@ -10,6 +10,7 @@ const addCategory = function(){
         if(categoryName.value != ""){
             let newCategory = new Category(categoryName.value);
             display(newCategory);
+            cleanTasks();
         }
 }
 
@@ -25,5 +26,18 @@ let display = function(element){
 
     return addingCategory
 }
+
+const cleanTasks = function(){
+    let taskList = document.querySelector('#taskList');
+    let tasks = document.querySelector('.tasks');
+    taskList.removeChild(tasks);
+}
+
+
+
+
+
+
+
 
 export {addCategory}
