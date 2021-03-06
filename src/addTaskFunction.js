@@ -1,8 +1,9 @@
+import {storeCategoryName} from './addCategory.js';
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 
 
-const addToList = function(){
+const addToList= function(){
     const addButton = document.querySelector('#addToList');
     addButton.addEventListener('click', addingTask);
 
@@ -12,9 +13,14 @@ const addToList = function(){
 
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
-            let newTask = new Task (title.value, description.value, schedule.value);
-            tasksGeneral.push(newTask);
-            display(newTask);
+            // if(storeCategoryName() != null){
+            //     let c = storeCategoryName().e;
+            // console.log(c)}
+                // else{
+                let newTask = new Task (title.value, description.value, schedule.value);
+                tasksGeneral.push(newTask);
+                display(newTask);
+                console.log(tasksGeneral)
         }
     }
     
@@ -39,9 +45,8 @@ const addToList = function(){
             myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
             taskList.appendChild(myTask);
-
     }
-
+    
     return addingTask
 }
 

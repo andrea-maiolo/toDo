@@ -12,6 +12,9 @@ const generateHomePage = (function(){
     const aside = document.createElement('aside');
     const categories = document.createElement('h3');
     categories.innerHTML= "Categories";
+    const master = document.createElement('button');
+    master.id = "masterCategory";
+    master.innerHTML = "All";
 
     const showCategoryForm = document.createElement('button');
     showCategoryForm.type="button";
@@ -36,6 +39,7 @@ const generateHomePage = (function(){
     aside.appendChild(showCategoryForm);
     aside.appendChild(categoryForm);
     aside.appendChild(categoryList);
+    categoryList.appendChild(master);
     main.appendChild(aside);
 
     const content = document.createElement('div');

@@ -1,10 +1,10 @@
 let tasksGeneral =[];
 
-function Task(title, description, schedule, categorie){
+function Task(title, description, schedule, category){
     this.title = title;
     this.description = description;
     this.schedule = schedule;
-    this.categorie = "master";
+    this.category = category;
 }
 
 export {tasksGeneral}
