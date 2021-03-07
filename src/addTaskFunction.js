@@ -17,7 +17,7 @@ const addToList= function(){
             //     let c = storeCategoryName().e;
             // console.log(c)}
                 // else{
-                let newTask = new Task (title.value, description.value, schedule.value);
+                let newTask = new Task (title.value, description.value, schedule.value, "master");
                 tasksGeneral.push(newTask);
                 display(newTask);
                 console.log(tasksGeneral)
