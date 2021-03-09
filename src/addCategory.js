@@ -1,5 +1,5 @@
 import {Category} from './categoryFactory.js';
-import {addToList} from './addTaskFunction.js';
+import {listOfCategories} from './categoryFactory.js';
 
 const addCategory = function(){
     const addCategoryButton = document.querySelector('#addCategory');
@@ -10,15 +10,15 @@ const addCategory = function(){
 
         if(categoryName.value != ""){
             let newCategory = new Category(categoryName.value);
+            listOfCategories.push(newCategory);
             display(newCategory);
             cleanTasks();
-            storeCategoryName(newCategory);
+            assignCurrentCategory();
         }
 }
 
-let display = function(element){
+const display = function(element){
     const categoryList = document.querySelector('#categoryList');
-
     let myCategoryName = document.createElement('p');
     myCategoryName.classList.add('pOfCategory');
     myCategoryName.innerHTML = element.title;
@@ -34,31 +34,20 @@ const cleanTasks = function(){
     if(tasks == null){
         return
     }else{
-        console.log(tasks);
         for (let i = (tasks.length - 1) ; i >= 0; i--) {
             // if (allInputs[i].type !== "button") we will use this o check if the category is there already
                 tasks[i].parentNode.removeChild(tasks[i])
             }
-        // while(tasks[0]){
-        //     taskList.removeChild(tasks)
-        //     break;
-        // }
     }
 }
 
-const storeCategoryName= function(name) {
-    if(name.length == 0){
-        console.log(storing)
-    }else {
-        let storing = name;
-    }
-    // take the category name every time one is created,
-    // store it here "thisplace",
-    // let "thisplace" be accessible outside of this function .
-    // but non changeble ,only visible.
-    // when the  function is called and there is no category then just make thisplace available
-    // only when a element is given you change the category name.
+const assignCurrentCategory = function(variable) {
+    //take listofcategories anc check for last element
+    //assign that to the variable variable
+    //create a cliccable button on category creation
+
 }
 
-export {storeCategoryName}
-export {addCategory}
+let currentCategory;
+
+    export {addCategory}

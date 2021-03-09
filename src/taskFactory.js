@@ -1,4 +1,4 @@
-let tasksGeneral =[];
+const tasksGeneral =[];
 
 function Task(title, description, schedule, category){
     this.title = title;

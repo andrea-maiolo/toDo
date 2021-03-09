@@ -13,10 +13,6 @@ const addToList= function(){
 
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
-            // if(storeCategoryName() != null){
-            //     let c = storeCategoryName().e;
-            // console.log(c)}
-                // else{
                 let newTask = new Task (title.value, description.value, schedule.value, "master");
                 tasksGeneral.push(newTask);
                 display(newTask);
