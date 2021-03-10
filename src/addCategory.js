@@ -1,6 +1,8 @@
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
 
+let currentCategory;
+
 const addCategory = function(){
     const addCategoryButton = document.querySelector('#addCategory');
     addCategoryButton.addEventListener('click', addingCategory);
@@ -13,13 +15,13 @@ const addCategory = function(){
             listOfCategories.push(newCategory);
             display(newCategory);
             cleanTasks();
-            assignCurrentCategory();
+            assignCurrentCategory(currentCategory);
         }
 }
 
 const display = function(element){
     const categoryList = document.querySelector('#categoryList');
-    let myCategoryName = document.createElement('p');
+    let myCategoryName = document.createElement('button');
     myCategoryName.classList.add('pOfCategory');
     myCategoryName.innerHTML = element.title;
 
@@ -42,12 +44,9 @@ const cleanTasks = function(){
 }
 
 const assignCurrentCategory = function(variable) {
-    //take listofcategories anc check for last element
-    //assign that to the variable variable
-    //create a cliccable button on category creation
-
+    let lastItem = listOfCategories[listOfCategories.length - 1];
+    variable = lastItem.title.toLowerCase();
 }
 
-let currentCategory;
-
     export {addCategory}
+    export {currentCategory}

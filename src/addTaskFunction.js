@@ -1,4 +1,4 @@
-import {storeCategoryName} from './addCategory.js';
+import {currentCategory} from './addCategory.js';
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 
@@ -13,10 +13,17 @@ const addToList= function(){
 
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
+            if(currentCategory == ""){
                 let newTask = new Task (title.value, description.value, schedule.value, "master");
                 tasksGeneral.push(newTask);
                 display(newTask);
                 console.log(tasksGeneral)
+            }else{
+                let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
+                tasksGeneral.push(newTask);
+                display(newTask);
+                console.log(tasksGeneral)
+            }
         }
     }
     
@@ -36,7 +43,6 @@ const addToList= function(){
         myTaskSchedule.classList.add('pOfTask');
         myTaskSchedule.innerHTML = element.schedule;
     
-        //create a button that can remove the books from libra
             myTask.appendChild(myTaskTitle);
             myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
