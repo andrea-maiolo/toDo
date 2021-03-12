@@ -1,7 +1,8 @@
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
+import {currentCategory} from './addTaskFunction.js';
+import {assignCurrentCategory} from './addTaskFunction.js';
 
-let currentCategory;
 
 const addCategory = function(){
     const addCategoryButton = document.querySelector('#addCategory');
@@ -15,7 +16,7 @@ const addCategory = function(){
             listOfCategories.push(newCategory);
             display(newCategory);
             cleanTasks();
-            assignCurrentCategory(currentCategory);
+            assignCurrentCategory();
         }
 }
 
@@ -43,10 +44,5 @@ const cleanTasks = function(){
     }
 }
 
-const assignCurrentCategory = function(variable) {
-    let lastItem = listOfCategories[listOfCategories.length - 1];
-    variable = lastItem.title.toLowerCase();
-}
-
     export {addCategory}
-    export {currentCategory}
+    export {listOfCategories}

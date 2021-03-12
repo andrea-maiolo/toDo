@@ -1,7 +1,13 @@
-import {currentCategory} from './addCategory.js';
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
+import {listOfCategories} from './addCategory.js';
 
+let currentCategory;
+
+const assignCurrentCategory = function() {
+    let lastItem = listOfCategories[listOfCategories.length - 1];
+    currentCategory = lastItem.title.toLowerCase();
+}
 
 const addToList= function(){
     const addButton = document.querySelector('#addToList');
@@ -13,16 +19,14 @@ const addToList= function(){
 
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
-            if(currentCategory == ""){
+            if(currentCategory == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "master");
                 tasksGeneral.push(newTask);
                 display(newTask);
-                console.log(tasksGeneral)
-            }else{
+            }else if(currentCategory != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
-                display(newTask);
-                console.log(tasksGeneral)
+                display(newTask)
             }
         }
     }
@@ -52,4 +56,6 @@ const addToList= function(){
     return addingTask
 }
 
+export {currentCategory} 
+export {assignCurrentCategory} 
 export {addToList}
