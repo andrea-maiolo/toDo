@@ -6,6 +6,7 @@ const categoryFormDisplay = function(){
     function show(){
         let categoryForm = document.querySelector('#categoryForm');
         categoryForm.style.display = 'block';
+        showCategoryForm.style.display = 'none';
     }
     
     return show

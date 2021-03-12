@@ -6,6 +6,7 @@ const formDisplay = function(){
     function show(){
         let newTaskForm = document.querySelector('#newTaskForm');
         newTaskForm.style.display = 'block';
+        newTaskButton.style.display = 'none';
     }
     
     return show

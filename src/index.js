@@ -4,10 +4,10 @@ import {categoryFormDisplay} from './categoryFormDisplay.js';
 import {addCategory} from './addCategory.js';
 import {addToList} from './addTaskFunction.js';
 import {clearList} from './clearFunction.js';
-import {tasksGeneral} from './taskFactory.js';
 
 formDisplay();
 categoryFormDisplay();
 addToList();
 clearList();
 addCategory();
+

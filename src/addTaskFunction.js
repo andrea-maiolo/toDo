@@ -23,10 +23,12 @@ const addToList= function(){
                 let newTask = new Task (title.value, description.value, schedule.value, "master");
                 tasksGeneral.push(newTask);
                 display(newTask);
+                console.log(tasksGeneral);
             }else if(currentCategory != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
-                display(newTask)
+                display(newTask);
+                console.log(tasksGeneral);
             }
         }
     }
@@ -55,7 +57,6 @@ const addToList= function(){
     
     return addingTask
 }
-
-export {currentCategory} 
+ 
 export {assignCurrentCategory} 
 export {addToList}
