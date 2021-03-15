@@ -1,18 +1,7 @@
 import {tasksGeneral} from './taskFactory.js';
+import {display} from './addTaskFunction.js';
 
 const startFilter= function(){
-
-    // let taskList = document.querySelector('#taskList');
-    // let tasks = document.getElementsByClassName('tasks');
-    // if(tasks == null){
-    //     return
-    // }else{
-    //     for (let i = (tasks.length - 1) ; i >= 0; i--) {
-    //         // if (allInputs[i].type !== "button") we will use this o check if the category is there already
-    //             tasks[i].parentNode.removeChild(tasks[i])
-    //         }
-    // }
-    //this filter the tasks
     let categoryButtons = document.querySelectorAll('.pOfCategory');
 
     const filtered = function(){
@@ -20,13 +9,17 @@ const startFilter= function(){
         let tasks = document.getElementsByClassName('tasks');
         if(tasks == null){
             return
+        }else if(this.innerHTML == "All"){
+            for (let i = (tasks.length - 1) ; i >= 0; i--) {
+                tasks[i].parentNode.removeChild(tasks[i])
+            };
+            tasksGeneral.forEach(t => display(t));
         }else{
             const tasksGeneralFiltered = tasksGeneral.filter(task => (task.category == this.innerHTML));
             for (let i = (tasks.length - 1) ; i >= 0; i--) {
                 tasks[i].parentNode.removeChild(tasks[i])
             };
-            tasksGeneralFiltered.forEach(t => taskList.appendChild(t))
-            console.table(tasksGeneralFiltered);       
+            tasksGeneralFiltered.forEach(t => display(t));
         }
     }
     

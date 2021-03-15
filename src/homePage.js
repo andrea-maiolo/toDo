@@ -13,7 +13,7 @@ const generateHomePage = (function(){
     const categories = document.createElement('h3');
     categories.innerHTML= "Categories";
     const master = document.createElement('button');
-    master.id = "masterCategory";
+    master.classList.add("pOfCategory");
     master.innerHTML = "All";
 
     const showCategoryForm = document.createElement('button');

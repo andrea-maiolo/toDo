@@ -15,6 +15,7 @@ const addCategory = function(){
             let newCategory = new Category(categoryName.value);
             listOfCategories.push(newCategory);
             display(newCategory);
+            clean()
             startFilter();
             assignCurrentCategory();
         }
@@ -31,29 +32,17 @@ const display = function(element){
     return addingCategory
 }
 
-// const startFilter= function(){
-//     //this clean the workstation
-//     // let taskList = document.querySelector('#taskList');
-//     // let tasks = document.getElementsByClassName('tasks');
-//     // if(tasks == null){
-//     //     return
-//     // }else{
-//     //     for (let i = (tasks.length - 1) ; i >= 0; i--) {
-//     //         // if (allInputs[i].type !== "button") we will use this o check if the category is there already
-//     //             tasks[i].parentNode.removeChild(tasks[i])
-//     //         }
-//     // }
-//     //this filter the tasks
-//     let categoryButtons = document.querySelectorAll('.pOfCategory');
+const clean = function(){
+    let taskList = document.querySelector('#taskList');
+    let tasks = document.getElementsByClassName('tasks');
+    if(tasks == null){
+        return
+    }else{
+        for (let i = (tasks.length - 1) ; i >= 0; i--) {
+                tasks[i].parentNode.removeChild(tasks[i])
+            }
+    }
+}
 
-//     const filtered = function(){
-//         const tasksGeneralFiltered = tasksGeneral.filter(task => (task.category == this.innerHTML));
-
-//         console.table(tasksGeneralFiltered);
-//     }
-    
-//     categoryButtons.forEach(button => button.addEventListener('click', filtered));
-    
-//     }
     export {addCategory}
     export {listOfCategories}

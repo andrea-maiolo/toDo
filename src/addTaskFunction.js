@@ -20,21 +20,21 @@ const addToList= function(){
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
             if(currentCategory == undefined){
-                let newTask = new Task (title.value, description.value, schedule.value, "master");
+                let newTask = new Task (title.value, description.value, schedule.value, "All");
                 tasksGeneral.push(newTask);
                 display(newTask);
-                console.log(tasksGeneral);
+                console.log(tasksGeneral)
             }else if(currentCategory != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
                 display(newTask);
-                console.log(tasksGeneral);
+                console.log(tasksGeneral)
             }
         }
     }
-    
+}
 
-    let display = function(element){
+    const display = function(element){
         const taskList = document.querySelector('#taskList');
     
         let myTask = document.createElement('div');
@@ -54,9 +54,8 @@ const addToList= function(){
             myTask.appendChild(myTaskSchedule);
             taskList.appendChild(myTask);
     }
-    
-    return addingTask
-}
+
  
 export {assignCurrentCategory} 
 export {addToList}
+export {display}
