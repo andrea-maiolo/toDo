@@ -42,6 +42,10 @@ aside {
     display:none;
 }
 
+.priorityForm{
+    display:none;
+}
+
 .tasks {
     border: solid 1px black;
 }
