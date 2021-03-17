@@ -12,4 +12,16 @@ const formDisplay = function(){
     return show
 }
 
+const priorityDisplay = function(){
+    const addPButton = document.querySelector('#addPriority');
+    addPButton.addEventListener('click', p);
+
+    function p(){
+        let priorityForm = document.querySelectorAll('.priorityForm');
+        priorityForm.forEach(e=> e.style.display ='block')
+        addPButton.style.display='none';
+    }
+}
+
 export {formDisplay}
+export {priorityDisplay}

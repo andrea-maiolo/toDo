@@ -71,36 +71,39 @@ const generateHomePage = (function(){
     inputDate.id="taskDate";
     inputDate.name="taskDate";
 
-    // const inputPriority = document.createElement('form');
-    // inputPriority.id="taskPriority";
-    // inputPriority.innerHTML = "Priority";
+    const inputPriority = document.createElement('form');
+    inputPriority.id="taskPriority";
+    inputPriority.innerHTML = "Priority";
 
-    // const priorityLow = document.createElement('input');
-    // priorityLow.type="radio";
-    // priorityLow.id="priorityLow";
-    // priorityLow.name="priorityLow";
+    const priorityLow = document.createElement('input');
+    priorityLow.type="radio";
+    priorityLow.id="priorityLow";
+    priorityLow.name="priority";
+    priorityLow.innerHTML="low";
     // const labelLow = document.createElement('label');
     // labelLow.innerHTML = "low";
 
-    // const priorityMedium = document.createElement('input');
-    // priorityMedium.type="radio";
-    // priorityMedium.id="priorityMedium";
-    // priorityMedium.name="priorityMedium";
+    const priorityMedium = document.createElement('input');
+    priorityMedium.type="radio";
+    priorityMedium.id="priorityMedium";
+    priorityMedium.name="priorityMedium";
+    priorityLow.innerHTML="medium";
     // const labelMedium = document.createElement('label');
     // labelMedium.innerHTML = "medium";
 
-    // const priorityHigh = document.createElement('input');
-    // priorityHigh.type="radio";
-    // priorityHigh.id="priorityHigh";
-    // priorityHigh.name="priorityHigh";
+    const priorityHigh = document.createElement('input');
+    priorityHigh.type="radio";
+    priorityHigh.id="priorityHigh";
+    priorityHigh.name="priorityHigh";
+    priorityLow.innerHTML="high";
     // const labelHigh = document.createElement('label');
     // labelHigh.innerHTML = "high";
 
-    // inputPriority.appendChild(priorityLow);
+    inputPriority.appendChild(priorityLow);
     // inputPriority.appendChild(labelLow);
-    // inputPriority.appendChild(priorityMedium);
+    inputPriority.appendChild(priorityMedium);
     // inputPriority.appendChild(labelMedium);
-    // inputPriority.appendChild(priorityHigh);
+    inputPriority.appendChild(priorityHigh);
     // inputPriority.appendChild(labelHigh);
 
     const addButton = document.createElement('button');
@@ -120,7 +123,7 @@ const generateHomePage = (function(){
     newTaskForm.appendChild(inputTitle);
     newTaskForm.appendChild(inputDescription);
     newTaskForm.appendChild(inputDate);
-    // newTaskForm.appendChild(inputPriority);
+    newTaskForm.appendChild(inputPriority);
     newTaskForm.appendChild(addButton);
     newTaskForm.appendChild(clearButton);
     

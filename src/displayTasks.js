@@ -1,7 +1,4 @@
-import {tasksGeneral} from './taskFactory.js';
-
-
-let display = function(element){
+const display = function(element){
     const taskList = document.querySelector('#taskList');
 
     let myTask = document.createElement('div');

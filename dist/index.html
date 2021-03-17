@@ -10,7 +10,38 @@
     </head>
 <body>
     <div id="main">
-        
+        <header class="header">
+            <h1 id="title">TO DO's list from Andy</h1>
+        </header>
+        <aside>
+            <h3>Categories</h3>
+            <button type="button" id="showCategoryForm">New Category</button>
+            <form id="categoryForm">
+                <input id="categoryName" type="text">
+                <button id="addCategory" type="button">Add</button>
+            </form>
+            <div id="categoryList">
+                <button class="pOfCategory">All</button>
+            </div>
+        </aside>
+        <div class="content">
+            <div>
+                <button id="newTaskButton" type="button">NEW</button>
+                <form id="newTaskForm">
+                    <input type="text" id="taskTitle" name="taskTitle" placeholder="title">
+                    <input type="text" id="taskDescription" name="taskDescription" placeholder="description">
+                    <input type="date" id="taskDate" name="taskDate"><form id="taskPriority">
+                        <button id="addPriority" type="button" class="buttons" name="addPriority">Add priority</button>
+                            <h2 class="priorityForm">Priority</h2>
+                           <input type="radio" name="priority" value="low" class="priorityForm"><p class="priorityForm">Low</p>
+                           <input type="radio" name="priority" value="medium" class="priorityForm"><p class="priorityForm">Medium</p>
+                           <input type="radio" name="priority" value="high" class="priorityForm"><p class="priorityForm">High</p>
+                    <button id="addToList" type="button" class="buttons" name="addToList">ADD</button>
+                    <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
+                </form>
+            </div>
+            <div id="taskList"></div>
+        </div>
     </div>
 </body>
 <script src="main.js"></script>
