@@ -2,6 +2,7 @@ import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 import {listOfCategories} from './addCategory.js';
 
+
 let currentCategory;
 
 const assignCurrentCategory = function() {
@@ -23,12 +24,12 @@ const addToList= function(){
                 let newTask = new Task (title.value, description.value, schedule.value, "All");
                 tasksGeneral.push(newTask);
                 display(newTask);
-                console.log(tasksGeneral)
+                deleteTaskOnClick();
             }else if(currentCategory != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
                 display(newTask);
-                console.log(tasksGeneral)
+                deleteTaskOnClick();
             }
         }
     }
@@ -48,13 +49,30 @@ const addToList= function(){
         let myTaskSchedule = document.createElement('p');
         myTaskSchedule.classList.add('pOfTask');
         myTaskSchedule.innerHTML = element.schedule;
+        let deleteButton = document.createElement('button');
+        deleteButton.id="deleteTask"
+        deleteButton.innerHTML="delete";
     
             myTask.appendChild(myTaskTitle);
             myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
+            myTask.appendChild(deleteButton);
             taskList.appendChild(myTask);
     }
 
+    const deleteTaskOnClick = function(){
+        let deleteButtons = document.querySelector('#deleteTask');
+        const taskList =document.querySelector('#taskList');
+
+        const deleteTask = function(){
+            taskList.removeChild(this.parentNode);
+        };
+
+        // deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
+        deleteButtons.addEventListener('click', deleteTask);
+
+
+    }
  
 export {assignCurrentCategory} 
 export {addToList}
