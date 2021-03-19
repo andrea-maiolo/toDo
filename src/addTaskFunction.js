@@ -24,12 +24,14 @@ const addToList= function(){
                 let newTask = new Task (title.value, description.value, schedule.value, "All");
                 tasksGeneral.push(newTask);
                 display(newTask);
-                deleteTaskOnClick();
+                deleteTaskOnClick(newTask);
+                expandeDescription();
             }else if(currentCategory != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
                 display(newTask);
                 deleteTaskOnClick(newTask);
+                expandeDescription();
             }
         }
     }
@@ -42,19 +44,25 @@ const addToList= function(){
         let myTaskTitle = document.createElement('p');
         myTaskTitle.classList.add('pOfTask');
         myTaskTitle.innerHTML = element.title;
-        // let myTaskDescription = document.createElement('p');
-        // myTaskDescription.classList.add('pOfTask');
-        // myTaskDescription.innerHTML = element.description;
+        let myTaskDescription = document.createElement('p');
+        myTaskDescription.classList.add('pOfTask');
+        myTaskDescription.classList.add('description');
+        myTaskDescription.innerHTML = element.description;
+        myTaskDescription.style.display="none";
         let myTaskSchedule = document.createElement('p');
         myTaskSchedule.classList.add('pOfTask');
         myTaskSchedule.innerHTML = element.schedule;
+        let expandeButton = document.createElement('button');
+        expandeButton.classList.add("expandeDescription");
+        expandeButton.innerHTML="<>";
         let deleteButton = document.createElement('button');
         deleteButton.classList.add("deleteTask")
         deleteButton.innerHTML="delete";
     
             myTask.appendChild(myTaskTitle);
-            // myTask.appendChild(myTaskDescription);
+            myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
+            myTask.appendChild(expandeButton);
             myTask.appendChild(deleteButton);
             taskList.appendChild(myTask);
     }
@@ -76,6 +84,21 @@ const addToList= function(){
             tasksGeneral.splice(currentId, 1);
         }
         deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
+    }
+
+    const expandeDescription = function(){
+        let expandeButtons = document.querySelectorAll('.expandeDescription');
+
+        const showMeDescription = function(){
+            let des = this.parentNode.childNodes[1];
+            if(des.style.display == "block"){
+                des.style.display = "none"
+            }else if(des.style.display == "none"){
+                des.style.display = "block"
+            }
+        } 
+
+        expandeButtons.forEach(b => b.addEventListener('click', showMeDescription));
     }
  
 export {assignCurrentCategory} 
