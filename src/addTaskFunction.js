@@ -29,7 +29,7 @@ const addToList= function(){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
                 tasksGeneral.push(newTask);
                 display(newTask);
-                deleteTaskOnClick();
+                deleteTaskOnClick(newTask);
             }
         }
     }
@@ -37,18 +37,8 @@ const addToList= function(){
 
     const display = function(element){
         const taskList = document.querySelector('#taskList');
-    
         let myTask = document.createElement('div');
         myTask.classList.add('tasks');
-    
-        // const getPosition= function(elementToFind, arrayElements) {
-        //     for (let i = 0; i < arrayElements.length; i += 1) {
-        //         if (arrayElements[i] === elementToFind) {
-        //             return i;
-        //         }}}
-        
-        // myTask.id = getPosition(element, tasksGeneral);
-        
         let myTaskTitle = document.createElement('p');
         myTaskTitle.classList.add('pOfTask');
         myTaskTitle.innerHTML = element.title;
@@ -69,7 +59,7 @@ const addToList= function(){
             taskList.appendChild(myTask);
     }
 
-    const deleteTaskOnClick = function(){
+    const deleteTaskOnClick = function(ele){
         let deleteButtons = document.querySelectorAll('.deleteTask');
         const taskList =document.querySelector('#taskList');
 
@@ -79,17 +69,13 @@ const addToList= function(){
                     return i;
                 }}}
         
-                let currentId = getPosition(element, tasksGeneral);
+                let currentId = getPosition(ele, tasksGeneral);
 
         const deleteTask = function(){
             taskList.removeChild(this.parentNode);
-            // let currentId = this.parentNode.id;
             tasksGeneral.splice(currentId, 1);
-            console.log(tasksGeneral)
         }
-
         deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
-        // deleteButtons.addEventListener('click', deleteTask);
     }
  
 export {assignCurrentCategory} 
