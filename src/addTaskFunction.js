@@ -40,38 +40,56 @@ const addToList= function(){
     
         let myTask = document.createElement('div');
         myTask.classList.add('tasks');
+    
+        // const getPosition= function(elementToFind, arrayElements) {
+        //     for (let i = 0; i < arrayElements.length; i += 1) {
+        //         if (arrayElements[i] === elementToFind) {
+        //             return i;
+        //         }}}
+        
+        // myTask.id = getPosition(element, tasksGeneral);
+        
         let myTaskTitle = document.createElement('p');
         myTaskTitle.classList.add('pOfTask');
         myTaskTitle.innerHTML = element.title;
-        let myTaskDescription = document.createElement('p');
-        myTaskDescription.classList.add('pOfTask');
-        myTaskDescription.innerHTML = element.description;
+        // let myTaskDescription = document.createElement('p');
+        // myTaskDescription.classList.add('pOfTask');
+        // myTaskDescription.innerHTML = element.description;
         let myTaskSchedule = document.createElement('p');
         myTaskSchedule.classList.add('pOfTask');
         myTaskSchedule.innerHTML = element.schedule;
         let deleteButton = document.createElement('button');
-        deleteButton.id="deleteTask"
+        deleteButton.classList.add("deleteTask")
         deleteButton.innerHTML="delete";
     
             myTask.appendChild(myTaskTitle);
-            myTask.appendChild(myTaskDescription);
+            // myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
             myTask.appendChild(deleteButton);
             taskList.appendChild(myTask);
     }
 
     const deleteTaskOnClick = function(){
-        let deleteButtons = document.querySelector('#deleteTask');
+        let deleteButtons = document.querySelectorAll('.deleteTask');
         const taskList =document.querySelector('#taskList');
+
+         const getPosition= function(elementToFind, arrayElements) {
+            for (let i = 0; i < arrayElements.length; i += 1) {
+                if (arrayElements[i] === elementToFind) {
+                    return i;
+                }}}
+        
+                let currentId = getPosition(element, tasksGeneral);
 
         const deleteTask = function(){
             taskList.removeChild(this.parentNode);
-        };
+            // let currentId = this.parentNode.id;
+            tasksGeneral.splice(currentId, 1);
+            console.log(tasksGeneral)
+        }
 
-        // deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
-        deleteButtons.addEventListener('click', deleteTask);
-
-
+        deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
+        // deleteButtons.addEventListener('click', deleteTask);
     }
  
 export {assignCurrentCategory} 
