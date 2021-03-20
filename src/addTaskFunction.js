@@ -1,6 +1,7 @@
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 import {listOfCategories} from './addCategory.js';
+import {getPriority} from './priorityCheck.js'
 
 
 let currentCategory;
@@ -9,10 +10,9 @@ const assignCurrentCategory = function() {
     let lastItem = listOfCategories[listOfCategories.length - 1];
     currentCategory = lastItem.title.toLowerCase();
 }
-
 const addToList= function(){
     const addButton = document.querySelector('#addToList');
-    addButton.addEventListener('click', addingTask);
+    addButton.addEventListener('click', addingTask)
 
     let title = document.querySelector('#taskTitle');
     let description = document.querySelector('#taskDescription');
@@ -34,6 +34,8 @@ const addToList= function(){
                 expandeDescription();
             }
         }
+
+         getPriority()
     }
 }
 

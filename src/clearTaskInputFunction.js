@@ -11,6 +11,7 @@ const clearList = function(){
         newTaskDescription.value = "";
         newTaskDate.value = "";
 
+
     }
     
     return remove

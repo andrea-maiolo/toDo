@@ -32,10 +32,18 @@
                     <input type="text" id="taskDescription" name="taskDescription" placeholder="description">
                     <input type="date" id="taskDate" name="taskDate"><form id="taskPriority">
                         <button id="addPriority" type="button" class="buttons" name="addPriority">Add priority</button>
+                        <form id="priorityForm">
                             <h2 class="priorityForm">Priority</h2>
-                           <input type="radio" name="priority" value="low" class="priorityForm"><p class="priorityForm">Low</p>
-                           <input type="radio" name="priority" value="medium" class="priorityForm"><p class="priorityForm">Medium</p>
-                           <input type="radio" name="priority" value="high" class="priorityForm"><p class="priorityForm">High</p>
+                            <label class="priorityForm">
+                                <input type="radio" name="priority" value="low" class="priorityForm">Low
+                           </label>
+                           <label class="priorityForm">
+                                <input type="radio" name="priority" value="medium" class="priorityForm">Medium
+                           </label>
+                            <label class="priorityForm">
+                                <input type="radio" name="priority" value="high" class="priorityForm">High
+                            </label>
+                        </form>
                     <button id="addToList" type="button" class="buttons" name="addToList">ADD</button>
                     <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
                 </form>
