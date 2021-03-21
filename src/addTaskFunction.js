@@ -10,6 +10,7 @@ const assignCurrentCategory = function() {
     let lastItem = listOfCategories[listOfCategories.length - 1];
     currentCategory = lastItem.title.toLowerCase();
 }
+
 const addToList= function(){
     const addButton = document.querySelector('#addToList');
     addButton.addEventListener('click', addingTask)
@@ -34,8 +35,6 @@ const addToList= function(){
                 expandeDescription();
             }
         }
-
-         getPriority()
     }
 }
 

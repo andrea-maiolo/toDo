@@ -1,7 +1,7 @@
 const getPriority = function(){
     let formP = document.querySelector('#newTaskForm');
-
-    function getRadioVal(form, name) {
+    
+    const getRadioVal = (function(form, name){
         let radioC;
         let radios = form.elements[name];
        
@@ -11,10 +11,8 @@ const getPriority = function(){
                 break;
             }
         }
-        return console.log(radioC)
-    }
-    
-    getRadioVal(formP,"priority")
+        return radioC
+    })(formP,"priority")
 }
 
 export {getPriority}
