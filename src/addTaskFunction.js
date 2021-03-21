@@ -1,8 +1,9 @@
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
 import {listOfCategories} from './addCategory.js';
-import {getPriority} from './priorityCheck.js'
-
+import {getPriority} from './priorityCheck.js';
+import {clearPriorityForm} from './clearPriorityForm.js';
+import {colorTask} from './colorTask.js';
 
 let currentCategory;
 
@@ -21,20 +22,42 @@ const addToList= function(){
 
     function addingTask() {
         if(title.value != "" && schedule.value != ""){
-            if(currentCategory == undefined){
-                let newTask = new Task (title.value, description.value, schedule.value, "All");
+            let pValue = getPriority();
+            if(currentCategory == undefined && pValue == undefined){
+                let newTask = new Task (title.value, description.value, schedule.value, "All", "default");
                 tasksGeneral.push(newTask);
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-            }else if(currentCategory != undefined){
-                let newTask = new Task (title.value, description.value, schedule.value, currentCategory);
+                colorTask(newTask["priority"]);
+                console.log(tasksGeneral)
+            }else if(currentCategory == undefined && pValue != undefined){
+                let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
                 tasksGeneral.push(newTask);
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
+                colorTask(newTask["priority"]);
+                console.log(tasksGeneral)
+            }else if(currentCategory != undefined && pValue == undefined){
+                let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
+                tasksGeneral.push(newTask);
+                display(newTask);
+                deleteTaskOnClick(newTask);
+                expandeDescription();
+                colorTask(newTask["priority"]);
+                console.log(tasksGeneral)
+            }else if(currentCategory != undefined && pValue != undefined){
+                let newTask = new Task (title.value, description.value, schedule.value, currentCategory, pValue);
+                tasksGeneral.push(newTask);
+                display(newTask);
+                deleteTaskOnClick(newTask);
+                expandeDescription();
+                colorTask(newTask["priority"]);
+                console.log(tasksGeneral)
             }
         }
+        clearPriorityForm()
     }
 }
 
