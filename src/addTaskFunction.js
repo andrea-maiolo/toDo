@@ -3,8 +3,6 @@ import {Task} from './taskFactory.js';
 import {listOfCategories} from './addCategory.js';
 import {getPriority} from './priorityCheck.js';
 import {clearPriorityForm} from './clearPriorityForm.js';
-import {colorTask} from './colorTask.js';
-
 let currentCategory;
 
 const assignCurrentCategory = function() {
@@ -29,7 +27,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                colorTask(newTask["priority"]);
                 console.log(tasksGeneral)
             }else if(currentCategory == undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
@@ -37,7 +34,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                colorTask(newTask["priority"]);
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
@@ -45,7 +41,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                colorTask(newTask["priority"]);
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, pValue);
@@ -53,7 +48,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                colorTask(newTask["priority"]);
                 console.log(tasksGeneral)
             }
         }
@@ -82,6 +76,23 @@ const addToList= function(){
         let deleteButton = document.createElement('button');
         deleteButton.classList.add("deleteTask")
         deleteButton.innerHTML="delete";
+        let p = element.priority;
+        const colorTask = (function(value){
+            switch(value) {
+                case "medium":
+                    myTask.style.backgroundColor = "orange"
+                  break;
+                case "low":
+                  myTask.style.backgroundColor = "yellow"
+                  break;
+                case "high":
+                    myTask.style.backgroundColor = "red"
+                    break;
+                default:
+                    break; 
+              }
+        })(p)
+
     
             myTask.appendChild(myTaskTitle);
             myTask.appendChild(myTaskDescription);
