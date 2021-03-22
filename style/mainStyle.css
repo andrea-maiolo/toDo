@@ -42,6 +42,29 @@ aside {
     display:none;
 }
 
+#grid{
+    display: grid;
+    grid-template-areas:
+    "title title title"
+    "low medium high"; ;
+}
+
+#gridT{
+    grid-area:title;
+}
+
+#gridL{
+    grid-area: low;
+}
+
+#gridM{
+    grid-area: medium;
+}
+
+#gridH{
+    grid-area: high;
+}
+
 .priorityForm{
     display:none;
 }
