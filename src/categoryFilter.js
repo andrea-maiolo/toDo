@@ -1,11 +1,11 @@
 import {tasksGeneral} from './taskFactory.js';
 import {display} from './addTaskFunction.js';
+import { clearPriorityForm } from './clearPriorityForm.js';
 
 const startFilter= function(){
     let categoryButtons = document.querySelectorAll('.pOfCategory');
 
     const filtered = function(){
-        let taskList = document.querySelector('#taskList');
         let tasks = document.getElementsByClassName('tasks');
         if(tasks == null){
             return
@@ -23,7 +23,8 @@ const startFilter= function(){
         }
     }
     
-    categoryButtons.forEach(button => button.addEventListener('click', filtered));
+    categoryButtons.forEach(button => button.addEventListener('click', filtered))
+    categoryButtons.forEach(button => button.addEventListener('click', clearPriorityForm()))
     
     }
 

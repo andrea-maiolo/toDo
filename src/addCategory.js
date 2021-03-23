@@ -33,7 +33,6 @@ const display = function(element){
 }
 
 const clean = function(){
-    let taskList = document.querySelector('#taskList');
     let tasks = document.getElementsByClassName('tasks');
     if(tasks == null){
         return
