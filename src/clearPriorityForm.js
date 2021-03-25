@@ -5,9 +5,9 @@ const clearPriorityForm = function(){
 
     const clearPF = (function(form, name){
         let radios = form.elements[name];
-        for (var i=0;i<radios.length; i++) {
+        for (let i=0;i<radios.length; i++) {
             if ( radios[i].checked ) {
-                radios[i].removeAttribute('checked');
+                radios[i].checked = false
             }
         }
     })(formT,"priority");
