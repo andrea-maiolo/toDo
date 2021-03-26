@@ -1,6 +1,6 @@
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
-import {assignCurrentCategory} from './addTaskFunction.js';
+import {assignCurrentCategory} from './assignCurrentC.js';
 import { startFilter} from './categoryFilter.js';
 
 
@@ -19,6 +19,7 @@ const addCategory = function(){
             startFilter();
             assignCurrentCategory();
         }
+        categoryName.value ="";
 }
 
 const display = function(element){

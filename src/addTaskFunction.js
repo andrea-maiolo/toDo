@@ -1,14 +1,9 @@
 import {tasksGeneral} from './taskFactory.js';
 import {Task} from './taskFactory.js';
-import {listOfCategories} from './addCategory.js';
 import {getPriority} from './priorityCheck.js';
 import {clearPriorityForm} from './clearPriorityForm.js';
-let currentCategory;
+import {currentCategory} from './assignCurrentC.js';
 
-const assignCurrentCategory = function() {
-    let lastItem = listOfCategories[listOfCategories.length - 1];
-    currentCategory = lastItem.title.toLowerCase();
-}
 
 const addToList= function(){
     const addButton = document.querySelector('#addToList');
@@ -136,6 +131,5 @@ const addToList= function(){
         expandeButtons.forEach(b => b.addEventListener('click', showMeDescription));
     }
  
-export {assignCurrentCategory} 
 export {addToList}
 export {display}

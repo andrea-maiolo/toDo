@@ -1,6 +1,7 @@
 import {tasksGeneral} from './taskFactory.js';
 import {display} from './addTaskFunction.js';
-import { clearPriorityForm } from './clearPriorityForm.js';
+import {clearPriorityForm } from './clearPriorityForm.js';
+import {currentCategory} from './assignCurrentC.js';
 
 const startFilter= function(){
     let categoryButtons = document.querySelectorAll('.pOfCategory');
@@ -22,8 +23,13 @@ const startFilter= function(){
             tasksGeneralFiltered.forEach(t => display(t));
         }
     }
+
+    const updateCategory = function(){
+        currentCategory = this.innerHTML.toLowerCase();
+    }
     
     categoryButtons.forEach(button => button.addEventListener('click', filtered))
+    categoryButtons.forEach(button => button.addEventListener('click', updateCategory))
     categoryButtons.forEach(button => button.addEventListener('click', clearPriorityForm()))
     
     }
