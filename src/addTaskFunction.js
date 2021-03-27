@@ -3,6 +3,7 @@ import {Task} from './taskFactory.js';
 import {getPriority} from './priorityCheck.js';
 import {clearPriorityForm} from './clearPriorityForm.js';
 import {currentCategory} from './assignCurrentC.js';
+import {moveToDifCategory} from './moveToDifCategory.js';
 
 
 const addToList= function(){
@@ -22,6 +23,7 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
+                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory == undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
@@ -29,6 +31,7 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
+                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
@@ -36,6 +39,7 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
+                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, pValue);
@@ -43,6 +47,7 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
+                moveToDifCategory();
                 console.log(tasksGeneral)
             }
         }
@@ -87,6 +92,8 @@ const addToList= function(){
                     break; 
               }
         })(p)
+
+        myTask.setAttribute('draggable', true)
 
     
             myTask.appendChild(myTaskTitle);
