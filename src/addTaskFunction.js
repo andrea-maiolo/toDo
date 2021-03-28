@@ -3,7 +3,6 @@ import {Task} from './taskFactory.js';
 import {getPriority} from './priorityCheck.js';
 import {clearPriorityForm} from './clearPriorityForm.js';
 import {currentCategory} from './assignCurrentC.js';
-import {moveToDifCategory} from './moveToDifCategory.js';
 
 
 const addToList= function(){
@@ -23,7 +22,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory == undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
@@ -31,7 +29,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
@@ -39,7 +36,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                moveToDifCategory();
                 console.log(tasksGeneral)
             }else if(currentCategory != undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, pValue);
@@ -47,7 +43,6 @@ const addToList= function(){
                 display(newTask);
                 deleteTaskOnClick(newTask);
                 expandeDescription();
-                moveToDifCategory();
                 console.log(tasksGeneral)
             }
         }
@@ -66,16 +61,33 @@ const addToList= function(){
         myTaskDescription.classList.add('pOfTask');
         myTaskDescription.classList.add('description');
         myTaskDescription.innerHTML = element.description;
+            let myTaskCategory = document.createElement('p');
+            myTaskCategory.classList.add('pOfTask');
+            myTaskCategory.classList.add('category');
+            myTaskCategory.innerHTML = element.category;
+            myTaskDescription.appendChild(myTaskCategory);
         myTaskDescription.style.display="none";
         let myTaskSchedule = document.createElement('p');
         myTaskSchedule.classList.add('pOfTask');
         myTaskSchedule.innerHTML = element.schedule;
         let expandeButton = document.createElement('button');
         expandeButton.classList.add("expandeDescription");
-        expandeButton.innerHTML="<>";
+        let iResize = document.createElement('i');
+        iResize.classList.add('glyphicon');
+        iResize.classList.add('glyphicon-resize-full');
+        expandeButton.appendChild(iResize);
         let deleteButton = document.createElement('button');
-        deleteButton.classList.add("deleteTask")
-        deleteButton.innerHTML="delete";
+        deleteButton.classList.add("deleteTask");
+        let iDelete = document.createElement('i');
+        iDelete.classList.add('glyphicon');
+        iDelete.classList.add('glyphicon-trash');
+        deleteButton.appendChild(iDelete);
+        let modifyButton = document.createElement('button');
+        modifyButton.classList.add("modifyTask")
+        let iModify = document.createElement('i');
+        iModify.classList.add('glyphicon');
+        iModify.classList.add('glyphicon-edit');
+        modifyButton.appendChild(iModify);
         let p = element.priority;
         const colorTask = (function(value){
             switch(value) {
@@ -92,15 +104,13 @@ const addToList= function(){
                     break; 
               }
         })(p)
-
-        myTask.setAttribute('draggable', true)
-
     
             myTask.appendChild(myTaskTitle);
             myTask.appendChild(myTaskDescription);
             myTask.appendChild(myTaskSchedule);
             myTask.appendChild(expandeButton);
             myTask.appendChild(deleteButton);
+            myTask.appendChild(modifyButton);
             taskList.appendChild(myTask);
     }
 
@@ -129,9 +139,13 @@ const addToList= function(){
         const showMeDescription = function(){
             let des = this.parentNode.childNodes[1];
             if(des.style.display == "block"){
-                des.style.display = "none"
+                des.style.display = "none";
+                this.childNodes[0].classList.remove('glyphicon-resize-small');
+                this.childNodes[0].classList.add('glyphicon-resize-full');
             }else if(des.style.display == "none"){
-                des.style.display = "block"
+                des.style.display = "block";
+                this.childNodes[0].classList.remove('glyphicon-resize-full');
+                this.childNodes[0].classList.add('glyphicon-resize-small');
             }
         } 
 
