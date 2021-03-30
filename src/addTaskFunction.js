@@ -18,36 +18,16 @@ const addToList= function(){
             let pValue = getPriority();
             if(currentCategory == undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "All", "default");
-                tasksGeneral.push(newTask);
-                display(newTask);
-                deleteTaskOnClick(newTask);
-                modifyTaskOnClick(newTask);
-                expandeDescription();
-                console.log(tasksGeneral)
+                functionOfFunctions(newTask)
             }else if(currentCategory == undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
-                tasksGeneral.push(newTask);
-                display(newTask);
-                deleteTaskOnClick(newTask);
-                modifyTaskOnClick(newTask);
-                expandeDescription();
-                console.log(tasksGeneral)
+                functionOfFunctions(newTask)
             }else if(currentCategory != undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
-                tasksGeneral.push(newTask);
-                display(newTask);
-                deleteTaskOnClick(newTask);
-                modifyTaskOnClick(newTask);
-                expandeDescription();
-                console.log(tasksGeneral)
+                functionOfFunctions(newTask)
             }else if(currentCategory != undefined && pValue != undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, pValue);
-                tasksGeneral.push(newTask);
-                display(newTask);
-                deleteTaskOnClick(newTask);
-                modifyTaskOnClick(newTask);
-                expandeDescription();
-                console.log(tasksGeneral)
+                functionOfFunctions(newTask)
             }
         }
         clearPriorityForm()
@@ -118,87 +98,144 @@ const addToList= function(){
             taskList.appendChild(myTask);
     }
 
-    const deleteTaskOnClick = function(ele){
+
+
+    const functionOfFunctions= function(element){
+        tasksGeneral.push(element);
+                display(element);
+                deleteTaskOnClick();
+                modifyTaskOnClick();
+                expandeDescription();
+                console.log(tasksGeneral)
+    }
+
+
+
+
+    const deleteTaskOnClick = function(){
         let deleteButtons = document.querySelectorAll('.deleteTask');
         const taskList =document.querySelector('#taskList');
 
          const getPosition= function(elementToFind, arrayElements) {
-            for (let i = 0; i < arrayElements.length; i += 1) {
+            for (let i = 0; i < arrayElements.length; i++) {
                 if (arrayElements[i] === elementToFind) {
                     return i;
                 }}}
         
-                let currentId = getPosition(ele, tasksGeneral);
+                let currentId 
 
         const deleteTask = function(){
+            let currentEle = this.parentNode;
+            currentId = getPosition(currentEle, tasksGeneral);
             taskList.removeChild(this.parentNode);
             tasksGeneral.splice(currentId, 1);
         }
         deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
     }
 
-    const modifyTaskOnClick = function(ele){
-        let modifyButtons = document.querySelectorAll('.modifyTask');
-        const taskList =document.querySelector('#taskList');
 
-         const getPosition= function(elementToFind, arrayElements) {
-            for (let i = 0; i < arrayElements.length; i += 1) {
-                if (arrayElements[i] === elementToFind) {
-                    return i;
-                }}}
-        
-                let currentId = getPosition(ele, tasksGeneral);
+
+
+
+
+    const modifyTaskOnClick = function(){
+
+        let modifyButtons = document.querySelectorAll('.modifyTask');
 
         const modifyTask = function(){
+            //select and check current text file if anything is not there you are going to have trouble.
             let currentTitle = this.parentNode.childNodes[0];
             let currentDescription = this.parentNode.childNodes[1];
+            // let currentCategory = this.parentNode.childNodes[1].childNodes[1];
+            let currentSchedule = this.parentNode.childNodes[3];
+
+            //create form
             let myModificationForm = document.createElement('form');
             myModificationForm.name="modificationForm";
 
             let modifyTitle = document.createElement('input');
-            // let modifyDescription = document.createElement('input');
+            modifyTitle.id="modifyTitle";
+            let modifyDescription = document.createElement('input');
+            modifyDescription.id="modifyDescription";
             // let modifyCategory = document.createElement('input');
-            // let modifySchedule = document.createElement('input');
+            // modifyCategory.id="modifyCategory";
+            let modifySchedule = document.createElement('input');
+            modifySchedule.id="modifySchedule";
+            
             modifyTitle.type = 'text';
-            // modifyDescription.type = 'text';
+            modifyTitle.setAttribute('maxlength', 20);
+            modifyDescription.type = 'text';
+            modifyDescription.setAttribute('maxlength', 50);
             // modifyCategory.type = 'text';
-            // modifySchedule.type = 'date';
-            modifyTitle.placeholder = currentTitle.innerHTML;
-            // modifyDescription.innerHTML = this.parentNode.childNodes[1].innerHTML;
-            // modifyCategory.innerHTML = this.parentNode.childNodes[2].innerHTML;
-            // modifySchedule.innerHTML = this.parentNode.childNodes[3].innerHTML;
+            // modifyCategory.setAttribute('maxlength', 20);
+            modifySchedule.type = 'date';
 
-            myModificationForm .appendChild(modifyTitle);
-            this.parentNode.removeChild(currentTitle);
-            this.parentNode.insertBefore(myModificationForm,currentDescription);
 
+            modifyTitle.value = currentTitle.innerHTML;
+            modifyDescription.value = currentDescription.innerHTML;
+            // modifyCategory.value = currentCategory.innerHTML;
+            modifySchedule.value = currentSchedule.innerHTML;
+  
+        
+            myModificationForm.appendChild(modifyTitle);
+            myModificationForm.appendChild(modifyDescription);
+            // myModificationForm.appendChild(modifyCategory);
+            myModificationForm.appendChild(modifySchedule);
+
+
+            //the confirm and delete buttons are part of the form 
             let confirmButton = document.createElement('button');
             confirmButton.innerHTML ="confirm";
-            confirmButton.type = 'submit';
-            this.parentNode.appendChild(confirmButton);
+            confirmButton.type="button";
+            myModificationForm.appendChild(confirmButton);
             let discardButton = document.createElement('button');
             discardButton.innerHTML = "discard";
-            this.parentNode.appendChild(discardButton);
+            discardButton.type="button";
+            myModificationForm.appendChild(discardButton);
+
+            //we have this so that the currentTitle becomes invisible and you can change it in the form
+            currentTitle.style.display = 'none';
+            currentDescription.style.display = 'none';
+            // currentCategory.style.display = 'none';
+            currentSchedule.style.display = 'none';
+            this.parentNode.appendChild(myModificationForm);
+
+
+            //you will need to select the values before using them in the form
+            let newTitle = document.querySelector('#modifyTitle');
+            let newDescription = document.querySelector('#modifyDescription');
+            // let newCategory = document.querySelector('#modifyCategory');
+            let newSchedule = document.querySelector('#modifySchedule');
+
+
+            //those are the event listeners for the buttons that will work similar to the addtask function
 
             confirmButton.addEventListener('click', ()=>{
-                modificationForm.submit()
-                currentTitle.innerHTML = modifyTitle.innerHTML;
-                this.parentNode.removeChild(myModificationForm);
-                this.parentNode.insertBefore(currentTitle, currentDescription);
-                this.parentNode.removeChild(confirmButton);
-                this.parentNode.removeChild(discardButton);
+                if(newTitle.value != "" && newSchedule != ""){
+                    currentTitle.innerHTML = newTitle.value;
+                    currentSchedule.innerHTML = newSchedule.value;
+                    this.parentNode.removeChild(myModificationForm);
+                    currentTitle.style.display = 'block';
+                    currentDescription.style.display = 'block';
+                    // currentCategory.style.display = 'block';
+                    currentSchedule.style.display = 'block';
+                    console.log(tasksGeneral)
+                }
             });
 
             discardButton.addEventListener('click', ()=>{
                 this.parentNode.removeChild(myModificationForm);
-                this.parentNode.insertBefore(currentTitle, currentDescription);
-                this.parentNode.removeChild(confirmButton);
-                this.parentNode.removeChild(discardButton)
+                currentTitle.style.display = 'block';
+                currentDescription.style.display = 'block';
+                // currentCategory.style.display = 'block';
+                currentSchedule.style.display = 'block';
             })
         }
 
         modifyButtons.forEach(b => b.addEventListener('click', modifyTask));
     }
+
+
 
     const expandeDescription = function(){
         let expandeButtons = document.querySelectorAll('.expandeDescription');

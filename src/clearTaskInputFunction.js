@@ -1,6 +1,9 @@
+import {clearPriorityForm } from './clearPriorityForm.js';
+
 const clearList = function(){
     const clearButton = document.querySelector('#clear');
     clearButton.addEventListener('click', remove);
+    clearButton.addEventListener('click', clearPriorityForm)
 
     function remove() {
         let newTaskTitle = document.querySelector('#taskTitle');
@@ -10,7 +13,6 @@ const clearList = function(){
         newTaskTitle.value = "";
         newTaskDescription.value = "";
         newTaskDate.value = "";
-
 
     }
     
