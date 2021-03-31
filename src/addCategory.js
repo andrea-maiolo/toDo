@@ -46,3 +46,4 @@ const clean = function(){
 
     export {addCategory}
     export {listOfCategories}
+    //test
