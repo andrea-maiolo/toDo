@@ -120,15 +120,20 @@ const addToList= function(){
             for (let i = 0; i < arrayElements.length; i++) {
                 if (arrayElements[i] === elementToFind) {
                     return i;
-                }}}
+                } else{ console.log(i)}
+
+            }}
         
                 let currentId 
 
         const deleteTask = function(){
             let currentEle = this.parentNode;
+            console.log(currentEle)
             currentId = getPosition(currentEle, tasksGeneral);
-            taskList.removeChild(this.parentNode);
+            console.log(currentId)
+            taskList.removeChild(currentEle);
             tasksGeneral.splice(currentId, 1);
+            console.log(tasksGeneral)
         }
         deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
     }
@@ -142,95 +147,19 @@ const addToList= function(){
 
         let modifyButtons = document.querySelectorAll('.modifyTask');
 
-        const modifyTask = function(){
-            //select and check current text file if anything is not there you are going to have trouble.
-            let currentTitle = this.parentNode.childNodes[0];
-            let currentDescription = this.parentNode.childNodes[1];
-            // let currentCategory = this.parentNode.childNodes[1].childNodes[1];
-            let currentSchedule = this.parentNode.childNodes[3];
-
-            //create form
-            let myModificationForm = document.createElement('form');
-            myModificationForm.name="modificationForm";
-
-            let modifyTitle = document.createElement('input');
-            modifyTitle.id="modifyTitle";
-            let modifyDescription = document.createElement('input');
-            modifyDescription.id="modifyDescription";
-            // let modifyCategory = document.createElement('input');
-            // modifyCategory.id="modifyCategory";
-            let modifySchedule = document.createElement('input');
-            modifySchedule.id="modifySchedule";
-            
-            modifyTitle.type = 'text';
-            modifyTitle.setAttribute('maxlength', 20);
-            modifyDescription.type = 'text';
-            modifyDescription.setAttribute('maxlength', 50);
-            // modifyCategory.type = 'text';
-            // modifyCategory.setAttribute('maxlength', 20);
-            modifySchedule.type = 'date';
-
-
-            modifyTitle.value = currentTitle.innerHTML;
-            modifyDescription.value = currentDescription.innerHTML;
-            // modifyCategory.value = currentCategory.innerHTML;
-            modifySchedule.value = currentSchedule.innerHTML;
-  
+        const getPosition= function(elementToFind, arrayElements) {
+            for (let i = 0; i < arrayElements.length; i++) {
+                if (arrayElements[i] === elementToFind) {
+                    return i;
+                }}}
         
-            myModificationForm.appendChild(modifyTitle);
-            myModificationForm.appendChild(modifyDescription);
-            // myModificationForm.appendChild(modifyCategory);
-            myModificationForm.appendChild(modifySchedule);
+                let currentId 
 
-
-            //the confirm and delete buttons are part of the form 
-            let confirmButton = document.createElement('button');
-            confirmButton.innerHTML ="confirm";
-            confirmButton.type="button";
-            myModificationForm.appendChild(confirmButton);
-            let discardButton = document.createElement('button');
-            discardButton.innerHTML = "discard";
-            discardButton.type="button";
-            myModificationForm.appendChild(discardButton);
-
-            //we have this so that the currentTitle becomes invisible and you can change it in the form
-            currentTitle.style.display = 'none';
-            currentDescription.style.display = 'none';
-            // currentCategory.style.display = 'none';
-            currentSchedule.style.display = 'none';
-            this.parentNode.appendChild(myModificationForm);
-
-
-            //you will need to select the values before using them in the form
-            let newTitle = document.querySelector('#modifyTitle');
-            let newDescription = document.querySelector('#modifyDescription');
-            // let newCategory = document.querySelector('#modifyCategory');
-            let newSchedule = document.querySelector('#modifySchedule');
-
-
-            //those are the event listeners for the buttons that will work similar to the addtask function
-
-            confirmButton.addEventListener('click', ()=>{
-                if(newTitle.value != "" && newSchedule != ""){
-                    currentTitle.innerHTML = newTitle.value;
-                    currentSchedule.innerHTML = newSchedule.value;
-                    this.parentNode.removeChild(myModificationForm);
-                    currentTitle.style.display = 'block';
-                    currentDescription.style.display = 'block';
-                    // currentCategory.style.display = 'block';
-                    currentSchedule.style.display = 'block';
-                    console.log(tasksGeneral)
-                }
-            });
-
-            discardButton.addEventListener('click', ()=>{
-                this.parentNode.removeChild(myModificationForm);
-                currentTitle.style.display = 'block';
-                currentDescription.style.display = 'block';
-                // currentCategory.style.display = 'block';
-                currentSchedule.style.display = 'block';
-            })
-        }
+       const modifyTask = function(){
+           let currentEle = this.parentNode;
+           currentId = getPosition(currentEle, tasksGeneral);
+           console.log(tasksGeneral[currentId])
+       }
 
         modifyButtons.forEach(b => b.addEventListener('click', modifyTask));
     }
