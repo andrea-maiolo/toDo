@@ -34,45 +34,137 @@ const addToList= function(){
     }
 }
 
-    const display = function(element){
-        const taskList = document.querySelector('#taskList');
-        let myTask = document.createElement('div');
-        myTask.classList.add('tasks');
-        let myTaskTitle = document.createElement('p');
-        myTaskTitle.classList.add('pOfTask');
-        myTaskTitle.innerHTML = element.title;
+const functionOfFunctions= function(element){
+    tasksGeneral.push(element);
+    display(element);
+    expandeDescription();
+}
+
+
+const display = function(element){
+    const taskList = document.querySelector('#taskList');
+    let myTask = document.createElement('div');
+    myTask.classList.add('tasks');
+    let myTaskTitle = document.createElement('p');
+    myTaskTitle.classList.add('pOfTask');
+    myTaskTitle.innerHTML = element.title;
+    let myTaskDetails = document.createElement('div');
+    myTaskDetails.classList.add('details');
         let myTaskDescription = document.createElement('p');
         myTaskDescription.classList.add('pOfTask');
-        myTaskDescription.classList.add('description');
         myTaskDescription.innerHTML = element.description;
-            let myTaskCategory = document.createElement('p');
-            myTaskCategory.classList.add('pOfTask');
-            myTaskCategory.classList.add('category');
-            myTaskCategory.innerHTML = element.category;
-            myTaskDescription.appendChild(myTaskCategory);
-        myTaskDescription.style.display="none";
-        let myTaskSchedule = document.createElement('p');
-        myTaskSchedule.classList.add('pOfTask');
-        myTaskSchedule.innerHTML = element.schedule;
-        let expandeButton = document.createElement('button');
-        expandeButton.classList.add("expandeDescription");
-        let iResize = document.createElement('i');
-        iResize.classList.add('glyphicon');
-        iResize.classList.add('glyphicon-resize-full');
-        expandeButton.appendChild(iResize);
-        let deleteButton = document.createElement('button');
-        deleteButton.classList.add("deleteTask");
-        let iDelete = document.createElement('i');
-        iDelete.classList.add('glyphicon');
-        iDelete.classList.add('glyphicon-trash');
-        deleteButton.appendChild(iDelete);
-        let modifyButton = document.createElement('button');
-        modifyButton.classList.add("modifyTask")
-        let iModify = document.createElement('i');
-        iModify.classList.add('glyphicon');
-        iModify.classList.add('glyphicon-edit');
-        modifyButton.appendChild(iModify);
-        let p = element.priority;
+        let myTaskCategory = document.createElement('p');
+        myTaskCategory.classList.add('pOfTask');
+        myTaskCategory.innerHTML = element.category;
+    myTaskDetails.appendChild(myTaskDescription);
+    myTaskDetails.appendChild(myTaskCategory);
+    myTaskDetails.style.display="none";
+    let myTaskSchedule = document.createElement('p');
+    myTaskSchedule.classList.add('pOfTask');
+    myTaskSchedule.innerHTML = element.schedule;
+    let expandeButton = document.createElement('button');
+    expandeButton.classList.add("expandeDescription");
+    let iResize = document.createElement('i');
+    iResize.classList.add('glyphicon');
+    iResize.classList.add('glyphicon-resize-full');
+    expandeButton.appendChild(iResize);
+    let deleteButton = document.createElement('button');
+    deleteButton.classList.add("deleteTask");
+    let iDelete = document.createElement('i');
+    iDelete.classList.add('glyphicon');
+    iDelete.classList.add('glyphicon-trash');
+    deleteButton.appendChild(iDelete);
+
+    deleteButton.addEventListener('click', () => {
+        taskList.removeChild(myTask);
+        deleteTaskArray(element);
+    });
+
+    let modifyButton = document.createElement('button');
+    modifyButton.classList.add("modifyTask")
+    let iModify = document.createElement('i');
+    iModify.classList.add('glyphicon');
+    iModify.classList.add('glyphicon-edit');
+    modifyButton.appendChild(iModify);
+
+    modifyButton.addEventListener('click', () => {
+            let myModificationForm = document.createElement('form');
+            myModificationForm.name="modificationForm";
+
+            let modifyTitle = document.createElement('input');
+            modifyTitle.id="modifyTitle";
+            let modifyDescription = document.createElement('input');
+            modifyDescription.id="modifyDescription";
+            let modifyCategory = document.createElement('input');
+            modifyCategory.id="modifyCategory";
+            let modifySchedule = document.createElement('input');
+            modifySchedule.id="modifySchedule";
+
+            modifyTitle.type = 'text';
+            modifyTitle.setAttribute('maxlength', 20);
+            modifyDescription.type = 'text';
+            modifyDescription.setAttribute('maxlength', 140);
+            modifyCategory.type = 'text';
+            modifyCategory.setAttribute('maxlength', 20);
+            modifySchedule.type = 'date';
+
+            modifyTitle.value = myTaskTitle.innerHTML;
+            modifyDescription.value = myTaskDescription.innerHTML;
+            modifyCategory.value = myTaskCategory.innerHTML;
+            modifySchedule.value = myTaskSchedule.innerHTML;
+  
+            myModificationForm.appendChild(modifyTitle);
+            myModificationForm.appendChild(modifyDescription);
+            myModificationForm.appendChild(modifyCategory);
+            myModificationForm.appendChild(modifySchedule);
+
+            let confirmButton = document.createElement('button');
+            confirmButton.innerHTML ="confirm";
+            confirmButton.type="button";
+            myModificationForm.appendChild(confirmButton);
+            let discardButton = document.createElement('button');
+            discardButton.innerHTML = "discard";
+            discardButton.type="button";
+            myModificationForm.appendChild(discardButton);
+
+            myTaskTitle.style.display = 'none';
+            myTaskDetails.style.display = 'none';
+            myTaskSchedule.style.display = 'none';
+            myTask.appendChild(myModificationForm);
+
+            let newTitle = document.querySelector('#modifyTitle');
+            let newDescription = document.querySelector('#modifyDescription');
+            let newCategory = document.querySelector('#modifyCategory');
+            let newSchedule = document.querySelector('#modifySchedule');
+
+            confirmButton.addEventListener('click', ()=>{
+                if(newTitle.value != "" && newSchedule != ""){
+                    myTaskTitle.innerHTML = newTitle.value;
+                    myTaskSchedule.innerHTML = newSchedule.value;
+                    myTaskDescription.innerHTML = newDescription.value;
+                    if(newCategory.value != ""){
+                        // createNewCategory(newCategory);
+                        myTaskCategory.innerHTML = newCategory.value;
+                    }else {
+                        alert("Please enter a category, use 'All' as default")
+                    }
+
+                    myTask.removeChild(myModificationForm);
+                    myTaskTitle.style.display = 'block';
+                    myTaskSchedule.style.display = 'block';
+                }
+                  modifyTasksGeneral(element)
+            });
+
+            discardButton.addEventListener('click', ()=>{
+                myTask.removeChild(myModificationForm);
+                myTaskTitle.style.display = 'block';
+                myTaskSchedule.style.display = 'block';
+            })
+    });
+
+
+    let p = element.priority;
         const colorTask = (function(value){
             switch(value) {
                 case "medium":
@@ -89,85 +181,28 @@ const addToList= function(){
               }
         })(p)
     
-            myTask.appendChild(myTaskTitle);
-            myTask.appendChild(myTaskDescription);
-            myTask.appendChild(myTaskSchedule);
-            myTask.appendChild(expandeButton);
-            myTask.appendChild(modifyButton);
-            myTask.appendChild(deleteButton);
-            taskList.appendChild(myTask);
+    myTask.appendChild(myTaskTitle);
+    myTask.appendChild(myTaskDetails);
+    myTask.appendChild(myTaskSchedule);
+    myTask.appendChild(expandeButton);
+    myTask.appendChild(modifyButton);
+    myTask.appendChild(deleteButton);
+    taskList.appendChild(myTask);
     }
 
 
+const deleteTaskArray = function(e){
+    let index  = tasksGeneral.indexOf(e);
+    tasksGeneral.splice(index,1);
+}
 
-    const functionOfFunctions= function(element){
-        tasksGeneral.push(element);
-                display(element);
-                deleteTaskOnClick();
-                modifyTaskOnClick();
-                expandeDescription();
-                console.log(tasksGeneral)
-    }
+const modifyTasksGeneral = function(e){
+    let currentOBJ = tasksGeneral.indexOf(e);
+    console.log(currentOBJ)
+}
 
-
-
-
-    const deleteTaskOnClick = function(){
-        let deleteButtons = document.querySelectorAll('.deleteTask');
-        const taskList =document.querySelector('#taskList');
-
-         const getPosition= function(elementToFind, arrayElements) {
-            for (let i = 0; i < arrayElements.length; i++) {
-                if (arrayElements[i] === elementToFind) {
-                    return i;
-                } else{ console.log(i)}
-
-            }}
-        
-                let currentId 
-
-        const deleteTask = function(){
-            let currentEle = this.parentNode;
-            console.log(currentEle)
-            currentId = getPosition(currentEle, tasksGeneral);
-            console.log(currentId)
-            taskList.removeChild(currentEle);
-            tasksGeneral.splice(currentId, 1);
-            console.log(tasksGeneral)
-        }
-        deleteButtons.forEach(b => b.addEventListener('click', deleteTask));
-    }
-
-
-
-
-
-
-    const modifyTaskOnClick = function(){
-
-        let modifyButtons = document.querySelectorAll('.modifyTask');
-
-        const getPosition= function(elementToFind, arrayElements) {
-            for (let i = 0; i < arrayElements.length; i++) {
-                if (arrayElements[i] === elementToFind) {
-                    return i;
-                }}}
-        
-                let currentId 
-
-       const modifyTask = function(){
-           let currentEle = this.parentNode;
-           currentId = getPosition(currentEle, tasksGeneral);
-           console.log(tasksGeneral[currentId])
-       }
-
-        modifyButtons.forEach(b => b.addEventListener('click', modifyTask));
-    }
-
-
-
-    const expandeDescription = function(){
-        let expandeButtons = document.querySelectorAll('.expandeDescription');
+const expandeDescription = function(){
+    let expandeButtons = document.querySelectorAll('.expandeDescription');
 
         const showMeDescription = function(){
             let des = this.parentNode.childNodes[1];
@@ -182,8 +217,8 @@ const addToList= function(){
             }
         } 
 
-        expandeButtons.forEach(b => b.addEventListener('click', showMeDescription));
-    }
+    expandeButtons.forEach(b => b.addEventListener('click', showMeDescription));
+}
  
 export {addToList}
 export {display}
