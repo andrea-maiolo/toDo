@@ -38,6 +38,7 @@ const functionOfFunctions= function(element){
     tasksGeneral.push(element);
     display(element);
     expandeDescription();
+    console.log(tasksGeneral)
 }
 
 
@@ -143,7 +144,6 @@ const display = function(element){
                     myTaskSchedule.innerHTML = newSchedule.value;
                     myTaskDescription.innerHTML = newDescription.value;
                     if(newCategory.value != ""){
-                        // createNewCategory(newCategory);
                         myTaskCategory.innerHTML = newCategory.value;
                     }else {
                         alert("Please enter a category, use 'All' as default")
@@ -153,7 +153,7 @@ const display = function(element){
                     myTaskTitle.style.display = 'block';
                     myTaskSchedule.style.display = 'block';
                 }
-                  modifyTasksGeneral(element)
+                  modifyTasksGeneral(myTask, element);
             });
 
             discardButton.addEventListener('click', ()=>{
@@ -196,9 +196,28 @@ const deleteTaskArray = function(e){
     tasksGeneral.splice(index,1);
 }
 
-const modifyTasksGeneral = function(e){
-    let currentOBJ = tasksGeneral.indexOf(e);
-    console.log(currentOBJ)
+const modifyTasksGeneral = function(myTask, element){
+    let i = tasksGeneral.indexOf(element);
+    let currentOBJ = tasksGeneral[i];
+    let objTitle = myTask.childNodes[0].innerHTML;
+    let objSchedule = myTask.childNodes[2].innerHTML;
+    let objDescription = myTask.childNodes[1].childNodes[0].innerHTML;
+    let objCategory = myTask.childNodes[1].childNodes[1].innerHTML;
+
+    if(objTitle != currentOBJ.title){
+        currentOBJ.title = objTitle;
+    }
+    if(objSchedule != currentOBJ.schedule){
+        currentOBJ.schedule = objSchedule;
+    }
+    if(objDescription != currentOBJ.description){
+        currentOBJ.description = objDescription;
+    }
+    if(objCategory != currentOBJ.category){
+        currentOBJ.category = objCategory;
+        createCategory(currentOBJ)
+    }
+    
 }
 
 const expandeDescription = function(){
