@@ -40,7 +40,6 @@ const addToList= function(){
 const functionOfFunctions= function(element){
     tasksGeneral.push(element);
     display(element);
-    expandeDescription();
     console.log(tasksGeneral)
 }
 
@@ -72,6 +71,19 @@ const display = function(element){
     iResize.classList.add('glyphicon');
     iResize.classList.add('glyphicon-resize-full');
     expandeButton.appendChild(iResize);
+
+    expandeButton.addEventListener('click', () => {
+        if(myTaskDetails.style.display == "block"){
+                myTaskDetails.style.display = "none";
+                iResize.classList.remove('glyphicon-resize-small');
+                iResize.classList.add('glyphicon-resize-full');
+            }else if(myTaskDetails.style.display == "none"){
+                myTaskDetails.style.display = "block";
+                iResize.classList.remove('glyphicon-resize-full');
+                iResize.classList.add('glyphicon-resize-small');
+            }
+    });
+
     let deleteButton = document.createElement('button');
     deleteButton.classList.add("deleteTask");
     let iDelete = document.createElement('i');
@@ -231,31 +243,20 @@ const modifyTasksGeneral = function(myTask, element){
     }
     if(objCategory != currentOBJ.category){
         currentOBJ.category = objCategory;
-        let newCategory = new Category (currentOBJ.category)
-        listOfCategories.push(newCategory);
-        displayCategory(newCategory);
+        for(let i=0; i <= listOfCategories.length; i++){
+            if( currentOBJ.category == listOfCategories[i].title){
+                return
+            }else{
+                let newCategory = new Category (currentOBJ.category)
+                listOfCategories.push(newCategory);
+                displayCategory(newCategory);
+            }
+        }
+        
     }
     
 }
 
-const expandeDescription = function(){
-    let expandeButtons = document.querySelectorAll('.expandeDescription');
-
-        const showMeDescription = function(){
-            let des = this.parentNode.childNodes[1];
-            if(des.style.display == "block"){
-                des.style.display = "none";
-                this.childNodes[0].classList.remove('glyphicon-resize-small');
-                this.childNodes[0].classList.add('glyphicon-resize-full');
-            }else if(des.style.display == "none"){
-                des.style.display = "block";
-                this.childNodes[0].classList.remove('glyphicon-resize-full');
-                this.childNodes[0].classList.add('glyphicon-resize-small');
-            }
-        } 
-
-    expandeButtons.forEach(b => b.addEventListener('click', showMeDescription));
-}
  
 export {addToList}
 export {display}
