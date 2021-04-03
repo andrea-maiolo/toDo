@@ -3,6 +3,9 @@ import {Task} from './taskFactory.js';
 import {getPriority} from './priorityCheck.js';
 import {clearPriorityForm} from './clearPriorityForm.js';
 import {currentCategory} from './assignCurrentC.js';
+import {Category} from './categoryFactory.js';
+import {listOfCategories} from './categoryFactory.js';
+import {displayCategory} from './addCategory.js';
 
 
 const addToList= function(){
@@ -163,6 +166,18 @@ const display = function(element){
             })
     });
 
+    let checkboxDone = document.createElement('input');
+    checkboxDone.type = 'checkbox';
+    checkboxDone.id = "done";
+    checkboxDone.addEventListener('click' , (e) => {
+        let task = e.path[1];
+        if(task.style.opacity != 0.5){
+        task.style.opacity = 0.5;
+        }else {
+            task.style.opacity = 1;
+        }
+    })
+
 
     let p = element.priority;
         const colorTask = (function(value){
@@ -187,6 +202,7 @@ const display = function(element){
     myTask.appendChild(expandeButton);
     myTask.appendChild(modifyButton);
     myTask.appendChild(deleteButton);
+    myTask.appendChild(checkboxDone);
     taskList.appendChild(myTask);
     }
 
@@ -215,7 +231,9 @@ const modifyTasksGeneral = function(myTask, element){
     }
     if(objCategory != currentOBJ.category){
         currentOBJ.category = objCategory;
-        createCategory(currentOBJ)
+        let newCategory = new Category (currentOBJ.category)
+        listOfCategories.push(newCategory);
+        displayCategory(newCategory);
     }
     
 }

@@ -77,3 +77,8 @@ aside {
     font-size:15px;
     margin-left:0.5em;
 }
+
+#done {
+    width: 2rem;
+    height: 2rem;
+}

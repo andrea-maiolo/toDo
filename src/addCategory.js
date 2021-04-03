@@ -1,7 +1,7 @@
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
 import {assignCurrentCategory} from './assignCurrentC.js';
-import { startFilter} from './categoryFilter.js';
+import {startFilter} from './categoryFilter.js';
 
 
 const addCategory = function(){
@@ -13,25 +13,28 @@ const addCategory = function(){
 
         if(categoryName.value != ""){
             let newCategory = new Category(categoryName.value);
-            listOfCategories.push(newCategory);
-            display(newCategory);
-            clean()
-            startFilter();
-            assignCurrentCategory();
+            functionOfFunctionsCategory(newCategory)
         }
         categoryName.value ="";
+    }
 }
 
-const display = function(element){
+const functionOfFunctionsCategory = function(newCategory){
+    listOfCategories.push(newCategory);
+    displayCategory(newCategory);
+    clean()
+    startFilter();
+    assignCurrentCategory();
+}
+
+const displayCategory = function(element){
     const categoryList = document.querySelector('#categoryList');
     let myCategoryName = document.createElement('button');
     myCategoryName.classList.add('pOfCategory');
     myCategoryName.innerHTML = element.title;
-
     categoryList.appendChild(myCategoryName);
 }
-    return addingCategory
-}
+
 
 const clean = function(){
     let tasks = document.getElementsByClassName('tasks');
@@ -45,4 +48,4 @@ const clean = function(){
 }
 
     export {addCategory}
-    export {listOfCategories}
+    export {displayCategory}
