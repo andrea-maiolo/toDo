@@ -6,6 +6,7 @@ import {currentCategory} from './assignCurrentC.js';
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
 import {displayCategory} from './addCategory.js';
+import {sortTasks} from './sortByDate.js';
 
 
 const addToList= function(){
@@ -40,7 +41,7 @@ const addToList= function(){
 const functionOfFunctions= function(element){
     tasksGeneral.push(element);
     display(element);
-    console.log(tasksGeneral)
+    sortTasks();
 }
 
 
@@ -64,6 +65,7 @@ const display = function(element){
     myTaskDetails.style.display="none";
     let myTaskSchedule = document.createElement('p');
     myTaskSchedule.classList.add('pOfTask');
+    myTaskSchedule.classList.add('date');
     myTaskSchedule.innerHTML = element.schedule;
     let expandeButton = document.createElement('button');
     expandeButton.classList.add("expandeDescription");
