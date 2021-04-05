@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/andrea-maiolo/toDo#readme",
   "dependencies": {
+    "date-fns": "^2.19.0",
     "live-server": "^1.2.1"
   },
   "devDependencies": {

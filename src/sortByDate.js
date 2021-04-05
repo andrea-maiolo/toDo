@@ -1,12 +1,24 @@
+import {tasksGeneral} from './taskFactory.js';
+import {format, parse, compareAsc} from 'date-fns';
+
+
 const sortTasks = function(){
+    //DOM stuff
     const taskList = document.querySelector('#taskList');
     let allTasks = document.querySelectorAll('.tasks');
     allTasks = Array.from(allTasks);
-    let arrayOfDates= []
-    allTasks.forEach(t => 
-        arrayOfDates.push(t.childNodes[2].innerHTML)
-    );
-    let ordered = arrayOfDates.sort((a,b) => a.date > b.date ? 1 : -1);
+
+    let m = [];
+    //taking the dates from the tasks array
+    let justDate = tasksGeneral.map(t => t.schedule );
+    justDate.forEach(d => {
+        let parsed = parse(d, 'dd/MM/yyyy', new Date());
+        let a = format(parsed, 'dd/MM/yyyy');
+    m.push(a)});
+        
+    console.log(m)
+ 
+    let ordered = m.sort(compareAsc);
     console.table(ordered)
 }
 
