@@ -25,7 +25,7 @@ const startFilter= function(){
     }
 
     const updateCategory = function(){
-        currentCategory = this.innerHTML.toLowerCase();
+        currentCategory = this.innerHTML;
     }
     
     categoryButtons.forEach(button => button.addEventListener('click', filtered))

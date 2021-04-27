@@ -6,7 +6,7 @@ import {currentCategory} from './assignCurrentC.js';
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
 import {displayCategory} from './addCategory.js';
-import {sortTasks} from './sortByDate.js';
+import {format, parseISO} from 'date-fns';
 
 
 const addToList= function(){
@@ -21,10 +21,10 @@ const addToList= function(){
         if(title.value != "" && schedule.value != ""){
             let pValue = getPriority();
             if(currentCategory == undefined && pValue == undefined){
-                let newTask = new Task (title.value, description.value, schedule.value, "All", "default");
+                let newTask = new Task (title.value, description.value, schedule.value, "Inbox", "default");
                 functionOfFunctions(newTask)
             }else if(currentCategory == undefined && pValue != undefined){
-                let newTask = new Task (title.value, description.value, schedule.value, "All", pValue);
+                let newTask = new Task (title.value, description.value, schedule.value, "Inbox", pValue);
                 functionOfFunctions(newTask)
             }else if(currentCategory != undefined && pValue == undefined){
                 let newTask = new Task (title.value, description.value, schedule.value, currentCategory, "default");
@@ -41,7 +41,6 @@ const addToList= function(){
 const functionOfFunctions= function(element){
     tasksGeneral.push(element);
     display(element);
-    sortTasks();
 }
 
 
@@ -65,8 +64,8 @@ const display = function(element){
     myTaskDetails.style.display="none";
     let myTaskSchedule = document.createElement('p');
     myTaskSchedule.classList.add('pOfTask');
-    myTaskSchedule.classList.add('date');
-    myTaskSchedule.innerHTML = element.schedule;
+    let d = format(parseISO(element.schedule), 'dd/MM/yyyy');
+    myTaskSchedule.innerHTML = d;
     let expandeButton = document.createElement('button');
     expandeButton.classList.add("expandeDescription");
     let iResize = document.createElement('i');
