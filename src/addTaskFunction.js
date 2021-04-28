@@ -155,19 +155,22 @@ const display = function(element){
             let newSchedule = document.querySelector('#modifySchedule');
 
             confirmButton.addEventListener('click', ()=>{
-                if(newTitle.value != "" && newSchedule != ""){
+                if(newTitle.value != "" && newSchedule.value != ""){
                     myTaskTitle.innerHTML = newTitle.value;
-                    myTaskSchedule.innerHTML = newSchedule.value;
+                    let d1 = format(parseISO(newSchedule.value), 'dd/MM/yyyy');
+                    myTaskSchedule.innerHTML = d1;
                     myTaskDescription.innerHTML = newDescription.value;
                     if(newCategory.value != ""){
                         myTaskCategory.innerHTML = newCategory.value;
                     }else {
-                        alert("Please enter a category, use 'All' as default")
+                        alert("Please enter a category, use 'Inbox' as default")
                     }
 
                     myTask.removeChild(myModificationForm);
                     myTaskTitle.style.display = 'block';
                     myTaskSchedule.style.display = 'block';
+                }else {
+                    alert('Please enter a valid date')
                 }
                   modifyTasksGeneral(myTask, element);
             });

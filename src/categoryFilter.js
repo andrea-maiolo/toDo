@@ -10,7 +10,7 @@ const startFilter= function(){
         let tasks = document.getElementsByClassName('tasks');
         if(tasks == null){
             return
-        }else if(this.innerHTML == "All"){
+        }else if(this.innerHTML == "Inbox"){
             for (let i = (tasks.length - 1) ; i >= 0; i--) {
                 tasks[i].parentNode.removeChild(tasks[i])
             };
