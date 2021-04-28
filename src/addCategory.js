@@ -3,7 +3,6 @@ import {listOfCategories} from './categoryFactory.js';
 import {assignCurrentCategory} from './assignCurrentC.js';
 import {startFilter} from './categoryFilter.js';
 
-
 const addCategory = function(){
     const addCategoryButton = document.querySelector('#addCategory');
     addCategoryButton.addEventListener('click', addingCategory);
@@ -12,8 +11,13 @@ const addCategory = function(){
         let categoryName = document.querySelector('#categoryName');
 
         if(categoryName.value != ""){
-            let newCategory = new Category(categoryName.value);
-            functionOfFunctionsCategory(newCategory)
+            for(let i=0; i<listOfCategories.length; i++){
+                if(categoryName.value == listOfCategories[i].title){
+                    alert("Please use a different category name");
+                    return
+                }}
+                let newCategory = new Category(categoryName.value);
+                functionOfFunctionsCategory(newCategory);                
         }
         categoryName.value ="";
     }

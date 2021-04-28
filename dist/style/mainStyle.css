@@ -86,3 +86,7 @@ aside {
     width: 2rem;
     height: 2rem;
 }
+
+.checked{
+    opacity: 0.5;
+}

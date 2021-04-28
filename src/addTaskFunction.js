@@ -187,11 +187,7 @@ const display = function(element){
     checkboxDone.id = "done";
     checkboxDone.addEventListener('click' , (e) => {
         let task = e.path[1];
-        if(task.style.opacity != 0.5){
-        task.style.opacity = 0.5;
-        }else {
-            task.style.opacity = 1;
-        }
+        task.classList.toggle('checked')
     })
 
 
