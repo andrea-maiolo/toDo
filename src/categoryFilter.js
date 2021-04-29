@@ -11,10 +11,11 @@ const startFilter= function(){
         if(tasks == null){
             return
         }else if(this.innerHTML == "Inbox"){
+            const tasksGeneralFilteredForInbox = tasksGeneral.filter(task => (task.category != "Done"));
             for (let i = (tasks.length - 1) ; i >= 0; i--) {
                 tasks[i].parentNode.removeChild(tasks[i])
             };
-            tasksGeneral.forEach(t => display(t));
+            tasksGeneralFilteredForInbox.forEach(t => display(t));
         }else{
             const tasksGeneralFiltered = tasksGeneral.filter(task => (task.category == this.innerHTML));
             for (let i = (tasks.length - 1) ; i >= 0; i--) {

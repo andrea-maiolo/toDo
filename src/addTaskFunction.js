@@ -187,7 +187,8 @@ const display = function(element){
     checkboxDone.id = "done";
     checkboxDone.addEventListener('click' , (e) => {
         let task = e.path[1];
-        task.classList.toggle('checked')
+        task.classList.toggle('checked');
+        moveTaskToDone(element);
     })
 
 
@@ -225,6 +226,11 @@ const display = function(element){
 const deleteTaskArray = function(e){
     let index  = tasksGeneral.indexOf(e);
     tasksGeneral.splice(index,1);
+}
+
+const moveTaskToDone = function(e){
+    let index  = tasksGeneral.indexOf(e);
+    tasksGeneral[index].category = "Done";
 }
 
 const modifyTasksGeneral = function(myTask, element){
