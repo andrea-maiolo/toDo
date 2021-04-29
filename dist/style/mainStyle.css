@@ -38,10 +38,6 @@ aside {
     display:none;
 }
 
-#categoryForm {
-    display:none;
-}
-
 #grid{
     display: grid;
     grid-template-areas:

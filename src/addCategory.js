@@ -18,8 +18,11 @@ const addCategory = function(){
                 }}
                 let newCategory = new Category(categoryName.value);
                 functionOfFunctionsCategory(newCategory);                
+        }else{
+            alert("Please enter a value")
         }
         categoryName.value ="";
+        console.log(listOfCategories)
     }
 }
 

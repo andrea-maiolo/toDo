@@ -128,7 +128,7 @@ const display = function(element){
             modifyTitle.value = myTaskTitle.innerHTML;
             modifyDescription.value = myTaskDescription.innerHTML;
             modifyCategory.value = myTaskCategory.innerHTML;
-            modifySchedule.value = myTaskSchedule.innerHTML;
+            modifySchedule.value = myTaskSchedule.value;
   
             myModificationForm.appendChild(modifyTitle);
             myModificationForm.appendChild(modifyDescription);
@@ -216,6 +216,9 @@ const display = function(element){
     myTask.appendChild(deleteButton);
     myTask.appendChild(checkboxDone);
     taskList.appendChild(myTask);
+
+    console.log(tasksGeneral)
+
     }
 
 
@@ -243,18 +246,19 @@ const modifyTasksGeneral = function(myTask, element){
     }
     if(objCategory != currentOBJ.category){
         currentOBJ.category = objCategory;
-        for(let i=0; i <= listOfCategories.length; i++){
+        let control =0; 
+        for(let i=0; i<listOfCategories.length; i++){
             if( currentOBJ.category == listOfCategories[i].title){
                 return
-            }else{
+            }else{control++}
+        }
+        if(control == listOfCategories.length){
                 let newCategory = new Category (currentOBJ.category)
                 listOfCategories.push(newCategory);
                 displayCategory(newCategory);
-            }
         }
-        
     }
-    
+    console.log(tasksGeneral)
 }
 
  
