@@ -7,6 +7,7 @@ import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
 import {displayCategory} from './addCategory.js';
 import {format, parseISO} from 'date-fns';
+import {startFilter} from './categoryFilter.js';
 
 
 const addToList= function(){
@@ -66,6 +67,7 @@ const display = function(element){
     myTaskSchedule.classList.add('pOfTask');
     let d = format(parseISO(element.schedule), 'dd/MM/yyyy');
     myTaskSchedule.innerHTML = d;
+    // myTaskSchedule.innerHTML = element.schedule;
     let expandeButton = document.createElement('button');
     expandeButton.classList.add("expandeDescription");
     let iResize = document.createElement('i');
@@ -157,8 +159,7 @@ const display = function(element){
             confirmButton.addEventListener('click', ()=>{
                 if(newTitle.value != "" && newSchedule.value != ""){
                     myTaskTitle.innerHTML = newTitle.value;
-                    let d1 = format(parseISO(newSchedule.value), 'dd/MM/yyyy');
-                    myTaskSchedule.innerHTML = d1;
+                    myTaskSchedule.innerHTML = newSchedule.value;
                     myTaskDescription.innerHTML = newDescription.value;
                     if(newCategory.value != ""){
                         myTaskCategory.innerHTML = newCategory.value;
@@ -262,6 +263,7 @@ const modifyTasksGeneral = function(myTask, element){
                 let newCategory = new Category (currentOBJ.category)
                 listOfCategories.push(newCategory);
                 displayCategory(newCategory);
+                startFilter();
         }
     }
     console.log(tasksGeneral)

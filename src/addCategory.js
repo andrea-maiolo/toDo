@@ -22,7 +22,6 @@ const addCategory = function(){
             alert("Please enter a value")
         }
         categoryName.value ="";
-        console.log(listOfCategories)
     }
 }
 
