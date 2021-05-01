@@ -31,6 +31,7 @@ const functionOfFunctionsCategory = function(newCategory){
     clean()
     startFilter();
     assignCurrentCategory();
+    // movingLOCIntoStorage();
 }
 
 const displayCategory = function(element){
@@ -52,6 +53,13 @@ const clean = function(){
             }
     }
 }
+
+// //this is the function that moves listOfCategories into localStorage
+// const movingLOCIntoStorage = function() {
+//     let lOC = JSON.stringify(listOfCategories);
+//     window.localStorage.setItem("localLOC", lOC)
+// };
+
 
     export {addCategory}
     export {displayCategory}

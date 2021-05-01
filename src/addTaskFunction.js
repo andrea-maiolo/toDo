@@ -42,6 +42,7 @@ const addToList= function(){
 const functionOfFunctions= function(element){
     tasksGeneral.push(element);
     display(element);
+    movingTGIntoStorage();
 }
 
 
@@ -183,13 +184,11 @@ const display = function(element){
             })
     });
 
-    let checkboxDone = document.createElement('input');
-    checkboxDone.type = 'checkbox';
-    checkboxDone.id = "done";
-    checkboxDone.addEventListener('click' , (e) => {
-        let task = e.path[1];
-        task.classList.toggle('checked');
-        moveTaskToDone(element);
+    let checkboxDone = document.createElement('div');
+    checkboxDone.classList.add('checkbox');
+    checkboxDone.addEventListener('click' , () => {
+        taskList.removeChild(myTask);
+        deleteTaskArray(element);
     })
 
 
@@ -229,11 +228,6 @@ const deleteTaskArray = function(e){
     tasksGeneral.splice(index,1);
 }
 
-const moveTaskToDone = function(e){
-    let index  = tasksGeneral.indexOf(e);
-    tasksGeneral[index].category = "Done";
-}
-
 const modifyTasksGeneral = function(myTask, element){
     let i = tasksGeneral.indexOf(element);
     let currentOBJ = tasksGeneral[i];
@@ -268,6 +262,13 @@ const modifyTasksGeneral = function(myTask, element){
     }
     console.log(tasksGeneral)
 }
+
+
+//this is the function that moves tasksGeneral into localStorage
+const movingTGIntoStorage = function() {
+    let tg = JSON.stringify(tasksGeneral);
+    window.localStorage.setItem("localTG", tg)
+};
 
  
 export {addToList}
