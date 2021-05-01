@@ -226,6 +226,7 @@ const display = function(element){
 const deleteTaskArray = function(e){
     let index  = tasksGeneral.indexOf(e);
     tasksGeneral.splice(index,1);
+    movingTGIntoStorage();
 }
 
 const modifyTasksGeneral = function(myTask, element){
@@ -260,6 +261,7 @@ const modifyTasksGeneral = function(myTask, element){
                 startFilter();
         }
     }
+    movingTGIntoStorage();
     console.log(tasksGeneral)
 }
 
