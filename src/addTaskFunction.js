@@ -5,7 +5,7 @@ import {clearPriorityForm} from './clearPriorityForm.js';
 import {currentCategory} from './assignCurrentC.js';
 import {Category} from './categoryFactory.js';
 import {listOfCategories} from './categoryFactory.js';
-import {displayCategory} from './addCategory.js';
+import {displayCategory, movingLOCIntoStorage} from './addCategory.js';
 import {format, parseISO} from 'date-fns';
 import {startFilter} from './categoryFilter.js';
 
@@ -259,6 +259,7 @@ const modifyTasksGeneral = function(myTask, element){
                 listOfCategories.push(newCategory);
                 displayCategory(newCategory);
                 startFilter();
+                movingLOCIntoStorage();
         }
     }
     movingTGIntoStorage();
