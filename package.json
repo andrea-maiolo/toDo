@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "s":"live-server",
-    "w":"npx webpack --watch"
+    "s": "live-server",
+    "w": "npx webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/andrea-maiolo/toDo#readme",
   "dependencies": {
+    "date-fns": "^2.19.0",
     "live-server": "^1.2.1"
   },
   "devDependencies": {

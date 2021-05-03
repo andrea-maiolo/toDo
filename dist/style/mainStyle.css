@@ -38,10 +38,6 @@ aside {
     display:none;
 }
 
-#categoryForm {
-    display:none;
-}
-
 #grid{
     display: grid;
     grid-template-areas:
@@ -73,7 +69,19 @@ aside {
     border: solid 1px black;
 }
 
+.tasks:hover{
+    background-color: rgb(155, 169, 233); 
+}
+
 .pOfTask {
     font-size:15px;
     margin-left:0.5em;
+}
+
+.checkbox{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid hsla(0,0%,100%,.4);
+    cursor: pointer;
 }
