@@ -1,13 +1,6 @@
-import {formDisplay} from './formDisplay.js';
-import {priorityDisplay} from './formDisplay.js';
-import {addCategory} from './addCategory.js';
-import {addToList} from './addTaskFunction.js';
-import {clearList} from './clearTaskInputFunction.js';
-import {startFilter} from './categoryFilter.js';
-import {listOfCategories } from './categoryFactory.js';
-import {tasksGeneral} from './taskFactory.js';
-import {displayCategory} from './addCategory.js';
-import {display} from './addTaskFunction.js';
+import {formDisplay, priorityDisplay, clearList} from './DOM.js';
+import {listOfCategories, tasksGeneral} from './factory.js';
+import {displayCategory, display, startFilter, addToList, addCategory} from './functionality.js';
 
 
 formDisplay();
