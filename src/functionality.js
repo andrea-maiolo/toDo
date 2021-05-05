@@ -391,7 +391,7 @@ import {format, parseISO} from 'date-fns';
         let tg = JSON.stringify(tasksGeneral);
         window.localStorage.setItem("localTG", tg)
     };
-    
+     
     export {assignCurrentCategory}
     export {currentCategory}
     export {addCategory}
