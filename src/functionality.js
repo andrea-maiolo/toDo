@@ -55,7 +55,10 @@ import {format, parseISO} from 'date-fns';
         iDeleteCategory.classList.add('glyphicon');
         iDeleteCategory.classList.add('glyphicon-trash');
         deleteCategory.appendChild(iDeleteCategory);
-        deleteCategory.addEventListener('click', deleteCategoryFunction);
+        deleteCategory.addEventListener('click',() => {
+            categoryList.removeChild(divCategory);
+            deleteCategoryFunction(myCategoryName);
+        });
         //appendChild
         divCategory.appendChild(deleteCategory);
         divCategory.appendChild(myCategoryName);
@@ -74,8 +77,18 @@ import {format, parseISO} from 'date-fns';
         }
     }
 
-    const deleteCategoryFunction = function() {
-        console.log("hello")
+    const deleteCategoryFunction = function(e) {
+        let index = listOfCategories.indexOf(e);
+        listOfCategories.splice(index, 1);
+        let thisCat = e.innerHTML;
+        tasksGeneral.forEach(t => {
+            if (t.category == thisCat) {
+                let it = tasksGeneral.indexOf(t);
+                tasksGeneral.splice(it,1);
+                movingTGIntoStorage();
+            }else {return}
+        })
+        movingLOCIntoStorage();
     }
     
     //this is the function that moves listOfCategories into localStorage
