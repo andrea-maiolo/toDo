@@ -39,11 +39,27 @@ import {format, parseISO} from 'date-fns';
     
     //display category
     const displayCategory = function(element) {
+        //take the sidebar
         const categoryList = document.querySelector('#categoryList');
+        //create div for the category
+        let divCategory = document.createElement('div');
+        divCategory.classList.add('divCategory');
+        //create category name
         let myCategoryName = document.createElement('button');
         myCategoryName.classList.add('pOfCategory');
         myCategoryName.innerHTML = element.title;
-        categoryList.appendChild(myCategoryName);
+        //create deletion button
+        let deleteCategory = document.createElement('button');
+        deleteCategory.classList.add('deleteCategoryButton');
+        let iDeleteCategory = document.createElement('i');
+        iDeleteCategory.classList.add('glyphicon');
+        iDeleteCategory.classList.add('glyphicon-trash');
+        deleteCategory.appendChild(iDeleteCategory);
+        deleteCategory.addEventListener('click', deleteCategoryFunction);
+        //appendChild
+        divCategory.appendChild(deleteCategory);
+        divCategory.appendChild(myCategoryName);
+        categoryList.appendChild(divCategory);
     }
     
     // clean display to show right tasks
@@ -56,6 +72,10 @@ import {format, parseISO} from 'date-fns';
                 tasks[i].parentNode.removeChild(tasks[i])
             }
         }
+    }
+
+    const deleteCategoryFunction = function() {
+        console.log("hello")
     }
     
     //this is the function that moves listOfCategories into localStorage

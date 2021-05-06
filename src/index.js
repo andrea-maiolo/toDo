@@ -46,5 +46,3 @@ const isThereALOC = (function() {
     }else{return}
 })();
 
-
-

@@ -2,15 +2,19 @@
     height: 100vh;
     width: 100vw;
     background-color: rgba(50, 69, 155, 0.568);
-    /* display:grid;
-    grid-template-columns: repeat(3,1fr); */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    grid-template-areas:
+        "head head head head"
+        "category content content content"
+        "category content content content";
 }
 
 .header {
-    /* grid-column: 1/4; */
+    grid-area: head;
     height:min-content;
-    border-bottom: 1px solid black;
-    background-color:rgb(86, 124, 136);
+    background-color:#8a95c6;
 }
 
 #title {
@@ -20,13 +24,9 @@
 }
 
 aside {
-    /* grid-column: 1/2; */
+    grid-area: category;
     float: left;
-    margin-right:0.5em;
     padding:0.5rem;
-    border-right:1px solid black;
-    max-width: 320px;
-    /* height:100vh; */
 }
 
 #catTitle{
@@ -49,9 +49,14 @@ aside {
 }
 
 #categoryList{
-    margin:1.7em;
+    margin:1.7em 1.7em 0 1.7em;
     display: flex;
     flex-direction: column;
+}
+
+.divCategory:hover{
+    transition-duration: 1s;
+    transform: rotateX(360deg);
 }
 
 .pOfCategory{
@@ -60,16 +65,23 @@ aside {
     background-color:#8a95c6;
     border:none;
     text-align: left;
+    font-size:15px;
+    font-family: sans-serif;
+}
+
+.deleteCategoryButton{
+    background-color: #8a95c6;
+    border:none;
 }
 
 .buttons {
     color:rgb(233, 34, 7);
 }      
 
-.content { grid-column: 2/4;
-
-display:none}
-
+.content { 
+    grid-area:content;
+    background-color: rgb(86, 124, 136);
+}
 
 #newTaskForm {
     display:none;
