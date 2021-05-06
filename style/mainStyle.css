@@ -4,7 +4,7 @@
     background-color: rgba(50, 69, 155, 0.568);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    /* grid-template-rows: 1fr 1fr 1fr; */
+    grid-template-rows: 0.5fr 1fr 1fr;
     grid-template-areas:
         "head head head head"
         "category content content content"
@@ -31,7 +31,7 @@ aside {
 
 #catTitle{
     color: #fad400;
-    margin:1em;
+    margin: 0.5em 1em;
 }
 
 #categoryForm{
@@ -54,9 +54,15 @@ aside {
     flex-direction: column;
 }
 
+#inboxIcon{
+    border:none;
+    background-color: #8a95c6;
+    padding: 1px 6px;
+}
+
 .divCategory:hover{
-    transition-duration: 1s;
-    transform: rotateX(360deg);
+    transition-duration: 0.25s;
+    transform: scale(1.1)
 }
 
 .pOfCategory{
@@ -133,4 +139,26 @@ aside {
     border-radius: 50%;
     border: 1px solid hsla(0,0%,100%,.4);
     cursor: pointer;
+}
+
+
+#newTaskButton {
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* z-index: 1000; */
+    outline: transparent;
+    background: linear-gradient(135deg, #2196f3 0%, #33648e 100%);
+    color: #fff;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+#newTaskButton:hover {
+    cursor:pointer;
+    transition: transform 0.25s;
+    transform: rotate(180deg) scale(1.2);
 }
