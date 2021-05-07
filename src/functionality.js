@@ -34,7 +34,6 @@ import {format, parseISO} from 'date-fns';
         startFilter();
         assignCurrentCategory();
         movingLOCIntoStorage();
-        console.log(listOfCategories)
     }
     
     //display category
@@ -197,7 +196,7 @@ import {format, parseISO} from 'date-fns';
     
     //display task
     const display = function(element) {
-        const taskList = document.querySelector('#taskList');
+        const taskContainer = document.querySelector('#taskContainer');
         let myTask = document.createElement('div');
         myTask.classList.add('tasks');
         let myTaskTitle = document.createElement('p');
@@ -245,7 +244,7 @@ import {format, parseISO} from 'date-fns';
         deleteButton.appendChild(iDelete);
     
         deleteButton.addEventListener('click', () => {
-            taskList.removeChild(myTask);
+            taskContainer.removeChild(myTask);
             deleteTaskArray(element);
         });
     
@@ -336,7 +335,7 @@ import {format, parseISO} from 'date-fns';
         let checkboxDone = document.createElement('div');
         checkboxDone.classList.add('checkbox');
         checkboxDone.addEventListener('click', () => {
-            taskList.removeChild(myTask);
+            taskContainer.removeChild(myTask);
             deleteTaskArray(element);
         })
     
@@ -365,10 +364,8 @@ import {format, parseISO} from 'date-fns';
         myTask.appendChild(modifyButton);
         myTask.appendChild(deleteButton);
         myTask.appendChild(checkboxDone);
-        taskList.appendChild(myTask);
-    
-        console.log(tasksGeneral)
-    
+        taskContainer.appendChild(myTask);
+        
     }
     
     //called when deleting a task
@@ -415,7 +412,6 @@ import {format, parseISO} from 'date-fns';
             }
         }
         movingTGIntoStorage();
-        console.log(tasksGeneral)
     }
     
     
