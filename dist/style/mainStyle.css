@@ -61,6 +61,10 @@ aside {
 }
 
 .divCategory:hover{
+    cursor:pointer;
+}
+
+.divCategory:hover{
     transition-duration: 0.25s;
     transform: scale(1.1)
 }
@@ -93,33 +97,6 @@ aside {
     max-width: 74vw;;
 }
 
-#grid{
-    display: grid;
-    grid-template-areas:
-    "title title title"
-    "low medium high"; ;
-}
-
-#gridT{
-    grid-area:title;
-}
-
-#gridL{
-    grid-area: low;
-}
-
-#gridM{
-    grid-area: medium;
-}
-
-#gridH{
-    grid-area: high;
-}
-
-.priorityForm{
-    display:none;
-}
-
 .tasks {
     border: solid 1px black;
     margin:0.5em;
@@ -132,17 +109,112 @@ aside {
 
 .pOfTask {
     font-size:15px;
-    margin-left:0.5em;
+    margin:0.5em;
 }
 
-.checkbox{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid hsla(0,0%,100%,.4);
-    cursor: pointer;
+.taskTitle{
+    flex:1;
 }
 
+.details{
+    flex:1;
+}
+
+.taskDescription{
+    flex:1;
+    word-wrap: break-word;
+    max-width: 30vw;
+}
+
+.taskCategory{
+    flex:1;
+}
+
+.taskSchedule{
+    flex:1;
+}
+
+.divForButtons{
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.modifyTask{
+    margin:0.5em;
+    width:2em;
+    height:2em;
+    border-radius:50%;
+    display:flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content:center;
+    border:none;
+}
+
+.modifyTask:hover{
+    transition: 0.2s;
+    transform:scale(1.2);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+.deleteTask{
+    margin:0.5em;
+    width:2em;
+    height:2em;
+    border-radius:50%;
+    display:flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content:center;
+    border:none;
+}
+
+.deleteTask:hover{
+    transition: 0.2s;
+    transform:scale(1.2);
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+
+.priorityBox{
+    width: 12px;
+    margin:0 !important;
+}
+
+.modificationForm{
+    display:flex;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: stretch;
+    justify-items: center;
+}
+
+#modifyTitle{
+    flex:1;
+}
+
+#modifyDescription{
+    flex:1;
+}
+
+#modifyCategory{   
+    flex:1;
+}
+
+#modifySchedule{
+    flex:1;
+}
+
+#confirmButton{
+    flex:1;
+}
+
+#discardButton{
+    flex:1;
+}
 
 #newTaskButton {
     border: none;
@@ -152,7 +224,6 @@ aside {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    /* z-index: 1000; */
     outline: transparent;
     background: linear-gradient(135deg, #2196f3 0%, #33648e 100%);
     color: #fff;
@@ -190,3 +261,30 @@ aside {
     visibility: hidden;
     opacity: 0;
 }
+
+/* #grid{
+    display: grid;
+    grid-template-areas:
+    "title title title"
+    "low medium high"; ;
+}
+
+#gridT{
+    grid-area:title;
+}
+
+#gridL{
+    grid-area: low;
+}
+
+#gridM{
+    grid-area: medium;
+}
+
+#gridH{
+    grid-area: high;
+}
+
+.priorityForm{
+    display:none;
+} */

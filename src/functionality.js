@@ -201,38 +201,35 @@ import {format, parseISO} from 'date-fns';
         myTask.classList.add('tasks');
         let myTaskTitle = document.createElement('p');
         myTaskTitle.classList.add('pOfTask');
+        myTaskTitle.classList.add('taskTitle');
         myTaskTitle.innerHTML = element.title;
         let myTaskDetails = document.createElement('div');
         myTaskDetails.classList.add('details');
         let myTaskDescription = document.createElement('p');
         myTaskDescription.classList.add('pOfTask');
+        myTaskDescription.classList.add('taskDescription');
         myTaskDescription.innerHTML = element.description;
         let myTaskCategory = document.createElement('p');
         myTaskCategory.classList.add('pOfTask');
+        myTaskCategory.classList.add('taskCategory');
         myTaskCategory.innerHTML = element.category;
         myTaskDetails.appendChild(myTaskDescription);
         myTaskDetails.appendChild(myTaskCategory);
         myTaskDetails.style.display = "none";
         let myTaskSchedule = document.createElement('p');
         myTaskSchedule.classList.add('pOfTask');
+        myTaskSchedule.classList.add('taskSchedule');
         let d = format(parseISO(element.schedule), 'dd/MM/yyyy');
         myTaskSchedule.innerHTML = d;
-        let expandeButton = document.createElement('button');
-        expandeButton.classList.add("expandeDescription");
-        let iResize = document.createElement('i');
-        iResize.classList.add('glyphicon');
-        iResize.classList.add('glyphicon-resize-full');
-        expandeButton.appendChild(iResize);
+
+        let divForButtons = document.createElement('div');
+        divForButtons.classList.add('divForButtons');
     
-        expandeButton.addEventListener('click', () => {
-            if (myTaskDetails.style.display == "block") {
+        myTask.addEventListener('click', () => {
+            if (myTaskDetails.style.display == "flex") {
                 myTaskDetails.style.display = "none";
-                iResize.classList.remove('glyphicon-resize-small');
-                iResize.classList.add('glyphicon-resize-full');
             } else if (myTaskDetails.style.display == "none") {
-                myTaskDetails.style.display = "block";
-                iResize.classList.remove('glyphicon-resize-full');
-                iResize.classList.add('glyphicon-resize-small');
+                myTaskDetails.style.display = "flex";
             }
         });
     
@@ -258,6 +255,7 @@ import {format, parseISO} from 'date-fns';
         modifyButton.addEventListener('click', () => {
             let myModificationForm = document.createElement('form');
             myModificationForm.name = "modificationForm";
+            myModificationForm.classList.add("modificationForm");
     
             let modifyTitle = document.createElement('input');
             modifyTitle.id = "modifyTitle";
@@ -279,7 +277,6 @@ import {format, parseISO} from 'date-fns';
             modifyTitle.value = myTaskTitle.innerHTML;
             modifyDescription.value = myTaskDescription.innerHTML;
             modifyCategory.value = myTaskCategory.innerHTML;
-            modifySchedule.value = myTaskSchedule.value;
     
             myModificationForm.appendChild(modifyTitle);
             myModificationForm.appendChild(modifyDescription);
@@ -287,18 +284,29 @@ import {format, parseISO} from 'date-fns';
             myModificationForm.appendChild(modifySchedule);
     
             let confirmButton = document.createElement('button');
-            confirmButton.innerHTML = "confirm";
+            let iConfirmButton = document.createElement('i');
+            iConfirmButton.classList.add('glyphicon');
+            iConfirmButton.classList.add('glyphicon-ok');
+            confirmButton.appendChild(iConfirmButton);    
             confirmButton.type = "button";
+            confirmButton.id = "confirmButton";
             myModificationForm.appendChild(confirmButton);
             let discardButton = document.createElement('button');
-            discardButton.innerHTML = "discard";
+            let iDiscardButton = document.createElement('i');
+            iDiscardButton.classList.add('glyphicon');
+            iDiscardButton.classList.add('glyphicon-remove');
+            discardButton.appendChild(iDiscardButton);
             discardButton.type = "button";
+            discardButton.id = "discardButton";
             myModificationForm.appendChild(discardButton);
     
             myTaskTitle.style.display = 'none';
-            myTaskDetails.style.display = 'none';
+            myTaskDescription.style.display = 'none';
+            myTaskCategory.style.display = 'none';
             myTaskSchedule.style.display = 'none';
-            myTask.appendChild(myModificationForm);
+            divForButtons.style.display = 'none';
+            priorityBox.style.display = 'none';
+            taskContainer.appendChild(myModificationForm);
     
             let newTitle = document.querySelector('#modifyTitle');
             let newDescription = document.querySelector('#modifyDescription');
@@ -316,9 +324,14 @@ import {format, parseISO} from 'date-fns';
                         alert("Please enter a category, use 'Inbox' as default")
                     }
     
-                    myTask.removeChild(myModificationForm);
+                    taskContainer.removeChild(myModificationForm);
                     myTaskTitle.style.display = 'block';
                     myTaskSchedule.style.display = 'block';
+                    divForButtons.style.display = 'flex';
+                    myTaskDescription.style.display = 'block';
+                    myTaskCategory.style.display = 'block';
+                    priorityBox.style.display = 'block';
+
                 } else {
                     alert('Please enter a valid date')
                 }
@@ -326,44 +339,43 @@ import {format, parseISO} from 'date-fns';
             });
     
             discardButton.addEventListener('click', () => {
-                myTask.removeChild(myModificationForm);
+                taskContainer.removeChild(myModificationForm);
                 myTaskTitle.style.display = 'block';
                 myTaskSchedule.style.display = 'block';
+                divForButtons.style.display = 'flex';
+                myTaskDescription.style.display = 'block';
+                myTaskCategory.style.display = 'block';
+                priorityBox.style.display = 'block';
             })
         });
     
-        let checkboxDone = document.createElement('div');
-        checkboxDone.classList.add('checkbox');
-        checkboxDone.addEventListener('click', () => {
-            taskContainer.removeChild(myTask);
-            deleteTaskArray(element);
-        })
-    
+        let priorityBox = document.createElement('div');
+        priorityBox.classList.add('priorityBox');
     
         let p = element.priority;
         const colorTask = (function(value) {
             switch (value) {
                 case "medium":
-                    myTask.style.backgroundColor = "orange"
+                    priorityBox.style.backgroundColor = "orange"
                     break;
                 case "low":
-                    myTask.style.backgroundColor = "yellow"
+                    priorityBox.style.backgroundColor = "yellow"
                     break;
                 case "high":
-                    myTask.style.backgroundColor = "red"
+                    priorityBox.style.backgroundColor = "red"
                     break;
                 default:
                     break;
             }
         })(p)
     
+        myTask.appendChild(priorityBox);
         myTask.appendChild(myTaskTitle);
         myTask.appendChild(myTaskDetails);
         myTask.appendChild(myTaskSchedule);
-        myTask.appendChild(expandeButton);
-        myTask.appendChild(modifyButton);
-        myTask.appendChild(deleteButton);
-        myTask.appendChild(checkboxDone);
+        divForButtons.appendChild(modifyButton);
+        divForButtons.appendChild(deleteButton);
+        myTask.appendChild(divForButtons);
         taskContainer.appendChild(myTask);
         
     }
