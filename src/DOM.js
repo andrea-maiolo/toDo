@@ -3,9 +3,8 @@ const formDisplay = function() {
     newTaskButton.addEventListener('click', show);
 
     function show() {
-        let newTaskForm = document.querySelector('#newTaskForm');
-        newTaskForm.style.display = 'block';
-        newTaskButton.style.display = 'none';
+        let taskFormCreation = document.querySelector('.taskFormCreation');
+        taskFormCreation.classList.remove('taskFormCreation-invisible')
     }
 
     return show
