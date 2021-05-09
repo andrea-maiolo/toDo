@@ -27,6 +27,7 @@ aside {
     grid-area: category;
     float: left;
     padding:0.5rem;
+    background-color:#8a95c6;
 }
 
 #catTitle{
@@ -48,7 +49,7 @@ aside {
     flex:0.5;
 }
 
-#categoryList{
+#categoryContainer{
     margin:1.7em 1.7em 0 1.7em;
     display: flex;
     flex-direction: column;
@@ -82,11 +83,7 @@ aside {
 .deleteCategoryButton{
     background-color: #8a95c6;
     border:none;
-}
-
-.buttons {
-    color:rgb(233, 34, 7);
-}      
+} 
 
 .content { 
     grid-area:content;
@@ -184,36 +181,99 @@ aside {
     margin:0 !important;
 }
 
-.modificationForm{
+.deactivated{
+    display:none;
+}
+
+.active{
     display:flex;
-    justify-content: space-between;
-    align-content: space-between;
-    align-items: stretch;
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    background-color: rgb(0,0,0,0.3);;
+    justify-content: center;
+    align-content: center;
+    align-items:center;
     justify-items: center;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index:2;
 }
 
-#modifyTitle{
-    flex:1;
+#modificationContainer{
+    width: 600px;
+    height:300px;
+    background-color:#fff;
 }
 
-#modifyDescription{
-    flex:1;
-}
-
-#modifyCategory{   
-    flex:1;
-}
-
-#modifySchedule{
-    flex:1;
-}
-
-#confirmButton{
-    flex:1;
+#topHeaderModificationForm{
+    background-color:#8a95c6;
+    font-size:24px;
+    color:#fff;
+    margin-bottom:1em;
+    padding:5px;
 }
 
 #discardButton{
-    flex:1;
+    float: right;
+    width: 20px;
+    height: 20px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    font-size: 12px;
+    margin: 0.7em 0.3em 0 0;
+    border: none;
+    background-color: #8a95c6;
+    color: #fff;
+}
+
+#modificationForm{
+    display:flex;
+    flex-direction: column;
+}
+
+#modifyTitle{
+    width: 85%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-family: lato, sans-serif;
+    resize: none;
+    margin: 0.2em;
+}
+
+#modifyDescription{
+    width: 85%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-family: lato, sans-serif;
+    resize: none;
+    height:5rem;
+    margin: 0.2em;
+}
+
+#modifyCategory{   
+    width: 85%;
+    border: none;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-family:lato, sans-serif;
+    resize: none;
+    margin: 0.2em;
+}
+
+#modifySchedule{
+    width:min-content;
+    margin-left: 0.2em;
+}
+
+#confirmButton{
+    border:none;
+    background-color: rgb(105, 122, 195, 0.6);
+    width: 25%;
+    align-self:flex-end;
 }
 
 #newTaskButton {
@@ -244,7 +304,7 @@ aside {
     padding: 10px;
     width: 100vw;
     height: 100vh;
-    display: -webkit-box;
+    /* display: -webkit-box; */
     /* display: flex; */
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -257,34 +317,39 @@ aside {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.taskFormCreation-invisible {
-    visibility: hidden;
-    opacity: 0;
+#priorityModificatioForm{
+    margin-top:1rem;
+    margin-left:0.2em;
 }
 
-/* #grid{
+#priorityModificationTitle{
+    font-size: 13px;
+    margin-left:0.2em
+}
+
+#grid{
     display: grid;
     grid-template-areas:
     "title title title"
     "low medium high"; ;
 }
 
-#gridT{
+/* #gridT{
     grid-area:title;
-}
+} */
 
 #gridL{
     grid-area: low;
+    font-weight: 100;
 }
 
 #gridM{
     grid-area: medium;
+    font-weight: 100;
 }
 
 #gridH{
-    grid-area: high;
-}
+    grid-area:high;
+    font-weight: 100;
 
-.priorityForm{
-    display:none;
-} */
+}
