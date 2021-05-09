@@ -10,17 +10,6 @@ const formDisplay = function() {
     return show
 }
 
-const priorityDisplay = function() {
-    const addPButton = document.querySelector('#addPriority');
-    addPButton.addEventListener('click', p);
-
-    function p() {
-        let priorityForm = document.querySelectorAll('.priorityForm');
-        priorityForm.forEach(e => e.style.display = 'block')
-        addPButton.style.display = 'none';
-    }
-}
-
 const clearList = function() {
     const clearButton = document.querySelector('#clear');
     clearButton.addEventListener('click', remove);
@@ -42,8 +31,6 @@ const clearList = function() {
 
 const clearPriorityForm = function(){
     let formT = document.querySelector('#newTaskForm');
-    let addPriorityButton = document.querySelector('#addPriority');
-    let priorityStuff = document.querySelectorAll('.priorityForm');
 
     const clearPF = (function(form, name){
         let radios = form.elements[name];
@@ -53,12 +40,8 @@ const clearPriorityForm = function(){
             }
         }
     })(formT,"priority");
-
-    addPriorityButton.style.display = "block";
-    priorityStuff.forEach(e => e.style.display ='none');
 }
 
 export {clearPriorityForm}
 export {clearList}
 export {formDisplay}
-export {priorityDisplay}

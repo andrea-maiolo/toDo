@@ -1,4 +1,4 @@
-import {Category, listOfCategories, tasksGeneral, Task} from './factory.js';
+import {Category, listOfCategories, tasksArray, Task} from './factory.js';
 import {clearPriorityForm } from './DOM.js';
 import {format, parseISO} from 'date-fns';
     
@@ -39,7 +39,7 @@ import {format, parseISO} from 'date-fns';
     //display category
     const displayCategory = function(element) {
         //take the sidebar
-        const categoryList = document.querySelector('#categoryList');
+        const categoryContainer = document.querySelector('#categoryContainer');
         //create div for the category
         let divCategory = document.createElement('div');
         divCategory.classList.add('divCategory');
@@ -55,13 +55,13 @@ import {format, parseISO} from 'date-fns';
         iDeleteCategory.classList.add('glyphicon-trash');
         deleteCategory.appendChild(iDeleteCategory);
         deleteCategory.addEventListener('click',() => {
-            categoryList.removeChild(divCategory);
+            categoryContainer.removeChild(divCategory);
             deleteCategoryFunction(myCategoryName);
         });
         //appendChild
         divCategory.appendChild(deleteCategory);
         divCategory.appendChild(myCategoryName);
-        categoryList.appendChild(divCategory);
+        categoryContainer.appendChild(divCategory);
     }
     
     // clean display to show right tasks
@@ -80,10 +80,10 @@ import {format, parseISO} from 'date-fns';
         let index = listOfCategories.indexOf(e);
         listOfCategories.splice(index, 1);
         let thisCat = e.innerHTML;
-        tasksGeneral.forEach(t => {
+        tasksArray.forEach(t => {
             if (t.category == thisCat) {
-                let it = tasksGeneral.indexOf(t);
-                tasksGeneral.splice(it,1);
+                let it = tasksArray.indexOf(t);
+                tasksArray.splice(it,1);
                 movingTGIntoStorage();
             }else {return}
         })
@@ -114,17 +114,17 @@ import {format, parseISO} from 'date-fns';
             if (tasks == null) {
                 return
             } else if (this.innerHTML == "Inbox") {
-                const tasksGeneralFilteredForInbox = tasksGeneral.filter(task => (task.category != "Done"));
+                const tasksArrayFilteredForInbox = tasksArray.filter(task => (task.category != "Done"));
                 for (let i = (tasks.length - 1); i >= 0; i--) {
                     tasks[i].parentNode.removeChild(tasks[i])
                 };
-                tasksGeneralFilteredForInbox.forEach(t => display(t));
+                tasksArrayFilteredForInbox.forEach(t => display(t));
             } else {
-                const tasksGeneralFiltered = tasksGeneral.filter(task => (task.category == this.innerHTML));
+                const tasksArrayFiltered = tasksArray.filter(task => (task.category == this.innerHTML));
                 for (let i = (tasks.length - 1); i >= 0; i--) {
                     tasks[i].parentNode.removeChild(tasks[i])
                 };
-                tasksGeneralFiltered.forEach(t => display(t));
+                tasksArrayFiltered.forEach(t => display(t));
             }
         }
     
@@ -189,7 +189,7 @@ import {format, parseISO} from 'date-fns';
     
     //called after task creation
     const functionOfFunctions = function(element) {
-        tasksGeneral.push(element);
+        tasksArray.push(element);
         display(element);
         movingTGIntoStorage();
     }
@@ -253,66 +253,30 @@ import {format, parseISO} from 'date-fns';
         modifyButton.appendChild(iModify);
     
         modifyButton.addEventListener('click', () => {
-            let myModificationForm = document.createElement('form');
-            myModificationForm.name = "modificationForm";
-            myModificationForm.classList.add("modificationForm");
-    
-            let modifyTitle = document.createElement('input');
-            modifyTitle.id = "modifyTitle";
-            let modifyDescription = document.createElement('input');
-            modifyDescription.id = "modifyDescription";
-            let modifyCategory = document.createElement('input');
-            modifyCategory.id = "modifyCategory";
-            let modifySchedule = document.createElement('input');
-            modifySchedule.id = "modifySchedule";
-    
-            modifyTitle.type = 'text';
-            modifyTitle.setAttribute('maxlength', 20);
-            modifyDescription.type = 'text';
-            modifyDescription.setAttribute('maxlength', 140);
-            modifyCategory.type = 'text';
-            modifyCategory.setAttribute('maxlength', 20);
-            modifySchedule.type = 'date';
-    
+            let modificationFormDiv = document.querySelector('.modificationFormDiv');
+            modificationFormDiv.classList.remove('deactivated');
+            modificationFormDiv.classList.add('active');
+
+            //set values equal to task
+            let modifyTitle = document.querySelector('#modifyTitle');
             modifyTitle.value = myTaskTitle.innerHTML;
+            let modifyDescription = document.querySelector('#modifyDescription');
             modifyDescription.value = myTaskDescription.innerHTML;
+            let modifyCategory = document.querySelector('#modifyCategory');
             modifyCategory.value = myTaskCategory.innerHTML;
-    
-            myModificationForm.appendChild(modifyTitle);
-            myModificationForm.appendChild(modifyDescription);
-            myModificationForm.appendChild(modifyCategory);
-            myModificationForm.appendChild(modifySchedule);
-    
-            let confirmButton = document.createElement('button');
-            let iConfirmButton = document.createElement('i');
-            iConfirmButton.classList.add('glyphicon');
-            iConfirmButton.classList.add('glyphicon-ok');
-            confirmButton.appendChild(iConfirmButton);    
-            confirmButton.type = "button";
-            confirmButton.id = "confirmButton";
-            myModificationForm.appendChild(confirmButton);
-            let discardButton = document.createElement('button');
-            let iDiscardButton = document.createElement('i');
-            iDiscardButton.classList.add('glyphicon');
-            iDiscardButton.classList.add('glyphicon-remove');
-            discardButton.appendChild(iDiscardButton);
-            discardButton.type = "button";
-            discardButton.id = "discardButton";
-            myModificationForm.appendChild(discardButton);
-    
-            myTaskTitle.style.display = 'none';
-            myTaskDescription.style.display = 'none';
-            myTaskCategory.style.display = 'none';
-            myTaskSchedule.style.display = 'none';
-            divForButtons.style.display = 'none';
-            priorityBox.style.display = 'none';
-            taskContainer.appendChild(myModificationForm);
-    
+            let modifySchedule = document.querySelector('#modifySchedule');
+            // let d = format(parseISO(myTaskSchedule.innerHTML), 'yyyy-MM-dd');
+            // console.log(d)
+            // modifySchedule.value = d;
+
+            //those are control values
             let newTitle = document.querySelector('#modifyTitle');
             let newDescription = document.querySelector('#modifyDescription');
             let newCategory = document.querySelector('#modifyCategory');
             let newSchedule = document.querySelector('#modifySchedule');
     
+            //confirm button function
+            let confirmButton = document.querySelector('#confirmButton');
             confirmButton.addEventListener('click', () => {
                 if (newTitle.value != "" && newSchedule.value != "") {
                     myTaskTitle.innerHTML = newTitle.value;
@@ -323,29 +287,19 @@ import {format, parseISO} from 'date-fns';
                     } else {
                         alert("Please enter a category, use 'Inbox' as default")
                     }
-    
-                    taskContainer.removeChild(myModificationForm);
-                    myTaskTitle.style.display = 'block';
-                    myTaskSchedule.style.display = 'block';
-                    divForButtons.style.display = 'flex';
-                    myTaskDescription.style.display = 'block';
-                    myTaskCategory.style.display = 'block';
-                    priorityBox.style.display = 'block';
-
+                    modificationFormDiv.classList.remove('active');
+                    modificationFormDiv.classList.add('deactivated');        
                 } else {
                     alert('Please enter a valid date')
                 }
-                modifyTasksGeneral(myTask, element);
-            });
-    
-            discardButton.addEventListener('click', () => {
-                taskContainer.removeChild(myModificationForm);
-                myTaskTitle.style.display = 'block';
-                myTaskSchedule.style.display = 'block';
-                divForButtons.style.display = 'flex';
-                myTaskDescription.style.display = 'block';
-                myTaskCategory.style.display = 'block';
-                priorityBox.style.display = 'block';
+                    modifytasksArray(myTask, element);
+                });
+
+            //discard button function
+            let discardButton = document.querySelector('#discardButton');
+            discardButton.addEventListener('click', () =>{
+                modificationFormDiv.classList.remove('active');
+                modificationFormDiv.classList.add('deactivated');
             })
         });
     
@@ -382,19 +336,19 @@ import {format, parseISO} from 'date-fns';
     
     //called when deleting a task
     const deleteTaskArray = function(e) {
-        let index = tasksGeneral.indexOf(e);
-        tasksGeneral.splice(index, 1);
+        let index = tasksArray.indexOf(e);
+        tasksArray.splice(index, 1);
         movingTGIntoStorage();
     }
     
     //called on task modification
-    const modifyTasksGeneral = function(myTask, element) {
-        let i = tasksGeneral.indexOf(element);
-        let currentOBJ = tasksGeneral[i];
-        let objTitle = myTask.childNodes[0].innerHTML;
-        let objSchedule = myTask.childNodes[2].innerHTML;
-        let objDescription = myTask.childNodes[1].childNodes[0].innerHTML;
-        let objCategory = myTask.childNodes[1].childNodes[1].innerHTML;
+    const modifytasksArray = function(myTask, element) {
+        let i = tasksArray.indexOf(element);
+        let currentOBJ = tasksArray[i];
+        let objTitle = myTask.childNodes[1].innerHTML;
+        let objSchedule = myTask.childNodes[3].innerHTML;
+        let objDescription = myTask.childNodes[2].childNodes[0].innerHTML;
+        let objCategory = myTask.childNodes[2].childNodes[1].innerHTML;
     
         if (objTitle != currentOBJ.title) {
             currentOBJ.title = objTitle;
@@ -427,9 +381,9 @@ import {format, parseISO} from 'date-fns';
     }
     
     
-    //this is the function that moves tasksGeneral into localStorage
+    //this is the function that moves tasksArray into localStorage
     const movingTGIntoStorage = function() {
-        let tg = JSON.stringify(tasksGeneral);
+        let tg = JSON.stringify(tasksArray);
         window.localStorage.setItem("localTG", tg)
     };
      
