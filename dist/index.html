@@ -11,25 +11,28 @@
     </head>
 <body>
     <div class="taskFormCreation deactivated">
-        <form id="newTaskForm">
-        <input type="text" id="taskTitle" name="taskTitle" maxlength =20 placeholder="title">
-        <input type="text" id="taskDescription" name="taskDescription" maxlength =140 placeholder="description">
-        <input type="date" id="taskDate" name="taskDate">
-        <div id="grid">
-            <h2 id="gridT" class="priorityForm">Priority</h2>
-            <label id="gridL" class="priorityForm">
-                <input type="radio" name="priority" value="low" class="priorityForm"> Low
-            </label>
-            <label id="gridM" class="priorityForm">
-                <input type="radio" name="priority" value="medium" class="priorityForm"> Medium
-            </label>
-            <label id="gridH" class="priorityForm">
-                <input type="radio" name="priority" value="high" class="priorityForm"> High
-            </label>
+        <div id="newTaskDiv">
+            <form id="newTaskForm">
+                <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
+            <input type="text" id="taskTitle" name="taskTitle" maxlength =20 placeholder="title">
+            <input type="text" id="taskDescription" name="taskDescription" maxlength =140 placeholder="description">
+            <input type="date" id="taskDate" name="taskDate">
+            <div id="grid">
+                <h2 id="gridT" class="priorityForm">Priority</h2>
+                <label id="gridL" class="priorityForm">
+                    <input type="radio" name="priority" value="low" class="priorityForm"> Low
+                </label>
+                <label id="gridM" class="priorityForm">
+                    <input type="radio" name="priority" value="medium" class="priorityForm"> Medium
+                </label>
+                <label id="gridH" class="priorityForm">
+                    <input type="radio" name="priority" value="high" class="priorityForm"> High
+                </label>
+            </div>
+            <button id="addToList" type="button" class="buttons" name="addToList">ADD</button>
+            <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
+            </form>
         </div>
-        <button id="addToList" type="button" class="buttons" name="addToList">ADD</button>
-        <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
-        </form>
     </div>
     <div class="modificationFormDiv deactivated">
         <div id="modificationContainer">
@@ -44,18 +47,6 @@
                 <input type="text" id="modifyDescription" name="modifyDescription" maxlength =140>
                 <input type="text" id="modifyCategory" name="modifyCategory" maxlength =20>
                 <input type="date" id="modifySchedule" name="modifySchedule">
-                <div id="priorityModificatioForm"> 
-                    <p id="priorityModificationTitle">Priority :</p>
-                    <label id="gridL" class="priorityForm">
-                        <input type="radio" name="priority" value="low" class="priorityForm"> Low
-                    </label>
-                    <label id="gridM" class="priorityForm">
-                        <input type="radio" name="priority" value="medium" class="priorityForm"> Medium
-                    </label>
-                    <label id="gridH" class="priorityForm">
-                        <input type="radio" name="priority" value="high" class="priorityForm"> High
-                    </label>
-                </div>        
                 <button id="confirmButton" type="button" name="confirm">
                     <i class="glyphicon glyphicon-ok"></i>
                 </button>

@@ -4,7 +4,8 @@ const formDisplay = function() {
 
     function show() {
         let taskFormCreation = document.querySelector('.taskFormCreation');
-        taskFormCreation.classList.remove('taskFormCreation-invisible')
+        taskFormCreation.classList.remove('deactivated');
+        taskFormCreation.classList.add('active');
     }
 
     return show
@@ -31,7 +32,6 @@ const clearList = function() {
 
 const clearPriorityForm = function(){
     let formT = document.querySelector('#newTaskForm');
-
     const clearPF = (function(form, name){
         let radios = form.elements[name];
         for (let i=0;i<radios.length; i++) {

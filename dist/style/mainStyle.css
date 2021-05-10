@@ -267,6 +267,7 @@ aside {
 #modifySchedule{
     width:min-content;
     margin-left: 0.2em;
+    margin-top: 2rem;
 }
 
 #confirmButton{
@@ -274,6 +275,7 @@ aside {
     background-color: rgb(105, 122, 195, 0.6);
     width: 25%;
     align-self:flex-end;
+    margin-top: 4rem;
 }
 
 #newTaskButton {
@@ -315,6 +317,14 @@ aside {
     visibility: visible;
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+#newTaskDiv{
+    background-color: #fff;
+    width: 70vw;
+    height: 70vh;
+    display:flex;
+    flex-direction:column;
 }
 
 #priorityModificatioForm{
