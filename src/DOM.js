@@ -30,6 +30,17 @@ const clearList = function() {
     return remove
 }
 
+const discardNewTask = function(){
+    const discardTaskFormButton = document.querySelector('#discardTaskFormButton');
+    discardTaskFormButton.addEventListener('click' , closeNewTaskForm);
+
+    function closeNewTaskForm() {
+        let taskFormCreation = document.querySelector('.taskFormCreation');
+        taskFormCreation.classList.remove('active');
+        taskFormCreation.classList.add('deactivated');
+    }
+}
+
 const clearPriorityForm = function(){
     let formT = document.querySelector('#newTaskForm');
     const clearPF = (function(form, name){
@@ -45,3 +56,4 @@ const clearPriorityForm = function(){
 export {clearPriorityForm}
 export {clearList}
 export {formDisplay}
+export {discardNewTask}

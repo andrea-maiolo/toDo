@@ -1,9 +1,10 @@
-import {formDisplay, clearList} from './DOM.js';
+import {formDisplay, clearList, discardNewTask} from './DOM.js';
 import {listOfCategories, tasksArray} from './factory.js';
 import {displayCategory, display, startFilter, addToList, addCategory} from './functionality.js';
 
 
 formDisplay();
+discardNewTask();
 addToList();
 clearList();
 addCategory();
