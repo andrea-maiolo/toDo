@@ -12,13 +12,17 @@
 <body>
     <div class="taskFormCreation deactivated">
         <div id="newTaskDiv">
-            <form id="newTaskForm">
-                <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
+                <header id="topHeaderModificationForm">
+                <button id="discardTaskFormButton" type="button" class="buttons" name="clear">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                </header>
+                <form id="newTaskForm">
             <input type="text" id="taskTitle" name="taskTitle" maxlength =20 placeholder="title">
             <input type="text" id="taskDescription" name="taskDescription" maxlength =140 placeholder="description">
-            <input type="date" id="taskDate" name="taskDate">
+            <input type="date" id="taskSchedule" name="taskDate">
+            <h2 id="gridT" class="priorityForm">Priority</h2>
             <div id="grid">
-                <h2 id="gridT" class="priorityForm">Priority</h2>
                 <label id="gridL" class="priorityForm">
                     <input type="radio" name="priority" value="low" class="priorityForm"> Low
                 </label>
@@ -29,8 +33,14 @@
                     <input type="radio" name="priority" value="high" class="priorityForm"> High
                 </label>
             </div>
-            <button id="addToList" type="button" class="buttons" name="addToList">ADD</button>
-            <button id="clear" type="button" class="buttons" name="clear">CLEAR</button>
+            <div id="newTaskButtons">
+                <button id="addToList" type="button" class="buttons" name="addToList">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </button>
+                <button id="clear" type="button" class="buttons" name="clear">
+                    <i class="glyphicon glyphicon-erase"></i>
+                </button>
+            </div>
             </form>
         </div>
     </div>
