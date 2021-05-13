@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="To Do List project from the Odin Project">
-        <meta name="keywords" content="HTML, CSS, JavaScript, to-do list">
-        <meta name="author" content="Andrea Maiolo">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="style/mainStyle.css">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="To Do List project from the Odin Project">
+    <meta name="keywords" content="HTML, CSS, JavaScript, to-do list">
+    <meta name="author" content="Andrea Maiolo">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/mainStyle.css">
+</head>
+
 <body>
     <div class="taskFormCreation deactivated">
         <div id="newTaskDiv">
-                <header id="topHeaderModificationForm">
+            <header id="topHeaderModificationForm">
+                Create task
                 <button id="discardTaskFormButton" type="button" class="buttons" name="clear">
                     <i class="glyphicon glyphicon-remove"></i>
                 </button>
-                </header>
-                <form id="newTaskForm">
-            <input type="text" id="taskTitle" name="taskTitle" maxlength =20 placeholder="title">
-            <input type="text" id="taskDescription" name="taskDescription" maxlength =140 placeholder="description">
-            <input type="date" id="taskSchedule" name="taskDate">
-            <h2 id="gridT" class="priorityForm">Priority</h2>
-            <div id="grid">
-                <label id="gridL" class="priorityForm">
-                    <input type="radio" name="priority" value="low" class="priorityForm"> Low
-                </label>
-                <label id="gridM" class="priorityForm">
-                    <input type="radio" name="priority" value="medium" class="priorityForm"> Medium
-                </label>
-                <label id="gridH" class="priorityForm">
-                    <input type="radio" name="priority" value="high" class="priorityForm"> High
-                </label>
-            </div>
-            <div id="newTaskButtons">
-                <button id="addToList" type="button" class="buttons" name="addToList">
-                    <i class="glyphicon glyphicon-ok"></i>
-                </button>
-                <button id="clear" type="button" class="buttons" name="clear">
-                    <i class="glyphicon glyphicon-erase"></i>
-                </button>
-            </div>
+            </header>
+            <form id="newTaskForm">
+                <input type="text" id="taskTitle" name="taskTitle" maxlength=20 placeholder="title">
+                <input type="text" id="taskDescription" name="taskDescription" maxlength=140 placeholder="description">
+                <input type="date" id="taskSchedule" name="taskDate">
+                <h2 id="gridT" class="priorityForm">Priority</h2>
+                <div id="grid">
+                    <label id="gridL" class="priorityForm">
+                        <input type="radio" name="priority" value="low" class="priorityForm"> Low
+                    </label>
+                    <label id="gridM" class="priorityForm">
+                        <input type="radio" name="priority" value="medium" class="priorityForm"> Medium
+                    </label>
+                    <label id="gridH" class="priorityForm">
+                        <input type="radio" name="priority" value="high" class="priorityForm"> High
+                    </label>
+                </div>
+                <div id="newTaskButtons">
+                    <button id="addToList" type="button" class="buttons" name="addToList">
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </button>
+                    <button id="clear" type="button" class="buttons" name="clear">
+                        <i class="glyphicon glyphicon-erase"></i>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -53,9 +56,9 @@
                 </button>
             </header>
             <form id="modificationForm">
-                <input type="text" id="modifyTitle" name="modifyTitle" maxlength =20>
-                <input type="text" id="modifyDescription" name="modifyDescription" maxlength =140>
-                <input type="text" id="modifyCategory" name="modifyCategory" maxlength =20>
+                <input type="text" id="modifyTitle" name="modifyTitle" maxlength=20>
+                <input type="text" id="modifyDescription" name="modifyDescription" maxlength=140>
+                <input type="text" id="modifyCategory" name="modifyCategory" maxlength=20>
                 <input type="date" id="modifySchedule" name="modifySchedule">
                 <button id="confirmButton" type="button" name="confirm">
                     <i class="glyphicon glyphicon-ok"></i>
@@ -70,8 +73,10 @@
         <aside>
             <h3 id="catTitle">Categories</h3>
             <form id="categoryForm">
-                <input id="categoryName" maxlength =20 placeholder='new category' type="text">
-                <button id="addCategory" type="button">Add</button>
+                <input id="categoryName" maxlength=20 placeholder='new category' type="text">
+                <button id="addCategory" type="button">
+                    <i  style="color:#fff" class="glyphicon glyphicon-ok"></i>
+                </button>
             </form>
             <div id="categoryContainer">
                 <div class="divCategory">
@@ -91,4 +96,5 @@
     </div>
 </body>
 <script src="main.js"></script>
+
 </html>
