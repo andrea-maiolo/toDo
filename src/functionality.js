@@ -6,10 +6,10 @@ import {format, parseISO} from 'date-fns';
     const addCategory = function() {
         const addCategoryButton = document.querySelector('#addCategory');
         addCategoryButton.addEventListener('click', addingCategory);
-    
+
         function addingCategory() {
             let categoryName = document.querySelector('#categoryName');
-    
+
             if (categoryName.value != "") {
                 for (let i = 0; i < listOfCategories.length; i++) {
                     if (categoryName.value == listOfCategories[i].title) {
@@ -25,7 +25,7 @@ import {format, parseISO} from 'date-fns';
             categoryName.value = "";
         }
     }
-    
+
     //activate whne category is created
     const functionOfFunctionsCategory = function(newCategory) {
         listOfCategories.push(newCategory);
@@ -35,7 +35,7 @@ import {format, parseISO} from 'date-fns';
         assignCurrentCategory();
         movingLOCIntoStorage();
     }
-    
+
     //display category
     const displayCategory = function(element) {
         //take the sidebar
@@ -54,7 +54,7 @@ import {format, parseISO} from 'date-fns';
         iDeleteCategory.classList.add('glyphicon');
         iDeleteCategory.classList.add('glyphicon-trash');
         deleteCategory.appendChild(iDeleteCategory);
-        deleteCategory.addEventListener('click',() => {
+        deleteCategory.addEventListener('click', () => {
             categoryContainer.removeChild(divCategory);
             deleteCategoryFunction(myCategoryName);
         });
@@ -63,7 +63,7 @@ import {format, parseISO} from 'date-fns';
         divCategory.appendChild(myCategoryName);
         categoryContainer.appendChild(divCategory);
     }
-    
+
     // clean display to show right tasks
     const clean = function() {
         let tasks = document.getElementsByClassName('tasks');
@@ -83,32 +83,34 @@ import {format, parseISO} from 'date-fns';
         tasksArray.forEach(t => {
             if (t.category == thisCat) {
                 let it = tasksArray.indexOf(t);
-                tasksArray.splice(it,1);
+                tasksArray.splice(it, 1);
                 movingTGIntoStorage();
-            }else {return}
+            } else {
+                return
+            }
         })
         movingLOCIntoStorage();
     }
-    
+
     //this is the function that moves listOfCategories into localStorage
     const movingLOCIntoStorage = function() {
         let lOC = JSON.stringify(listOfCategories);
         window.localStorage.setItem("localLOC", lOC)
     };
-    
+
     //this is the function that check the current category
     let currentCategory;
-    
+
     const assignCurrentCategory = function() {
         let lastItem = listOfCategories[listOfCategories.length - 1];
         currentCategory = lastItem.title;
     }
-    
+
     //this function is called everytime a category is clicked on 
     //or added so the display shows only the tasks present in the category
     const startFilter = function() {
         let categoryButtons = document.querySelectorAll('.pOfCategory');
-    
+
         const filtered = function() {
             let tasks = document.getElementsByClassName('tasks');
             if (tasks == null) {
@@ -127,25 +129,25 @@ import {format, parseISO} from 'date-fns';
                 tasksArrayFiltered.forEach(t => display(t));
             }
         }
-    
+
         const updateCategory = function() {
             currentCategory = this.innerHTML;
         }
-    
+
         categoryButtons.forEach(button => button.addEventListener('click', filtered))
         categoryButtons.forEach(button => button.addEventListener('click', updateCategory))
         categoryButtons.forEach(button => button.addEventListener('click', clearPriorityForm()))
-    
+
     }
-    
-    
+
+
     //***HERE START THE LOGIC FOR TASKS/
     const getPriority = function() {
         let formP = document.querySelector('#newTaskForm');
         let radioC;
         const getRadioVal = (function(form, name) {
             let radios = form.elements[name];
-    
+
             for (var i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
                     radioC = radios[i].value;
@@ -156,16 +158,16 @@ import {format, parseISO} from 'date-fns';
         })(formP, "priority")
         return radioC
     }
-    
+
     //create new task
     const addToList = function() {
         const addButton = document.querySelector('#addToList');
         addButton.addEventListener('click', addingTask)
-    
+
         let title = document.querySelector('#taskTitle');
         let description = document.querySelector('#taskDescription');
         let schedule = document.querySelector('#taskDate');
-    
+
         function addingTask() {
             if (title.value != "" && schedule.value != "") {
                 let pValue = getPriority();
@@ -186,14 +188,14 @@ import {format, parseISO} from 'date-fns';
             clearPriorityForm()
         }
     }
-    
+
     //called after task creation
     const functionOfFunctions = function(element) {
         tasksArray.push(element);
         display(element);
         movingTGIntoStorage();
     }
-    
+
     //display task
     const display = function(element) {
         const taskContainer = document.querySelector('#taskContainer');
@@ -224,7 +226,7 @@ import {format, parseISO} from 'date-fns';
 
         let divForButtons = document.createElement('div');
         divForButtons.classList.add('divForButtons');
-    
+
         myTask.addEventListener('click', () => {
             if (myTaskDetails.style.display == "flex") {
                 myTaskDetails.style.display = "none";
@@ -232,26 +234,26 @@ import {format, parseISO} from 'date-fns';
                 myTaskDetails.style.display = "flex";
             }
         });
-    
+
         let deleteButton = document.createElement('button');
         deleteButton.classList.add("deleteTask");
         let iDelete = document.createElement('i');
         iDelete.classList.add('glyphicon');
         iDelete.classList.add('glyphicon-trash');
         deleteButton.appendChild(iDelete);
-    
+
         deleteButton.addEventListener('click', () => {
             taskContainer.removeChild(myTask);
             deleteTaskArray(element);
         });
-    
+
         let modifyButton = document.createElement('button');
         modifyButton.classList.add("modifyTask")
         let iModify = document.createElement('i');
         iModify.classList.add('glyphicon');
         iModify.classList.add('glyphicon-edit');
         modifyButton.appendChild(iModify);
-    
+
         modifyButton.addEventListener('click', () => {
             let modificationFormDiv = document.querySelector('.modificationFormDiv');
             modificationFormDiv.classList.remove('deactivated');
@@ -274,7 +276,7 @@ import {format, parseISO} from 'date-fns';
             let newDescription = document.querySelector('#modifyDescription');
             let newCategory = document.querySelector('#modifyCategory');
             let newSchedule = document.querySelector('#modifySchedule');
-    
+
             //confirm button function
             let confirmButton = document.querySelector('#confirmButton');
             confirmButton.addEventListener('click', () => {
@@ -288,24 +290,24 @@ import {format, parseISO} from 'date-fns';
                         alert("Please enter a category, use 'Inbox' as default")
                     }
                     modificationFormDiv.classList.remove('active');
-                    modificationFormDiv.classList.add('deactivated');        
+                    modificationFormDiv.classList.add('deactivated');
                 } else {
                     alert('Please enter a valid date')
                 }
-                    modifytasksArray(myTask, element);
-                });
+                modifytasksArray(myTask, element);
+            });
 
             //discard button function
             let discardButton = document.querySelector('#discardButton');
-            discardButton.addEventListener('click', () =>{
+            discardButton.addEventListener('click', () => {
                 modificationFormDiv.classList.remove('active');
                 modificationFormDiv.classList.add('deactivated');
             })
         });
-    
+
         let priorityBox = document.createElement('div');
         priorityBox.classList.add('priorityBox');
-    
+
         let p = element.priority;
         const colorTask = (function(value) {
             switch (value) {
@@ -322,7 +324,7 @@ import {format, parseISO} from 'date-fns';
                     break;
             }
         })(p)
-    
+
         myTask.appendChild(priorityBox);
         myTask.appendChild(myTaskTitle);
         myTask.appendChild(myTaskDetails);
@@ -331,16 +333,16 @@ import {format, parseISO} from 'date-fns';
         divForButtons.appendChild(deleteButton);
         myTask.appendChild(divForButtons);
         taskContainer.appendChild(myTask);
-        
+
     }
-    
+
     //called when deleting a task
     const deleteTaskArray = function(e) {
         let index = tasksArray.indexOf(e);
         tasksArray.splice(index, 1);
         movingTGIntoStorage();
     }
-    
+
     //called on task modification
     const modifytasksArray = function(myTask, element) {
         let i = tasksArray.indexOf(element);
@@ -349,7 +351,7 @@ import {format, parseISO} from 'date-fns';
         let objSchedule = myTask.childNodes[3].innerHTML;
         let objDescription = myTask.childNodes[2].childNodes[0].innerHTML;
         let objCategory = myTask.childNodes[2].childNodes[1].innerHTML;
-    
+
         if (objTitle != currentOBJ.title) {
             currentOBJ.title = objTitle;
         }
@@ -379,14 +381,14 @@ import {format, parseISO} from 'date-fns';
         }
         movingTGIntoStorage();
     }
-    
-    
+
+
     //this is the function that moves tasksArray into localStorage
     const movingTGIntoStorage = function() {
         let tg = JSON.stringify(tasksArray);
         window.localStorage.setItem("localTG", tg)
     };
-     
+         
     export {assignCurrentCategory}
     export {currentCategory}
     export {addCategory}
@@ -396,3 +398,4 @@ import {format, parseISO} from 'date-fns';
     export {getPriority}
     export {addToList}
     export {display}
+    export{deleteCategoryFunction}

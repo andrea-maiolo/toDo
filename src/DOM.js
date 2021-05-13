@@ -30,9 +30,9 @@ const clearList = function() {
     return remove
 }
 
-const discardNewTask = function(){
+const discardNewTask = function() {
     const discardTaskFormButton = document.querySelector('#discardTaskFormButton');
-    discardTaskFormButton.addEventListener('click' , closeNewTaskForm);
+    discardTaskFormButton.addEventListener('click', closeNewTaskForm);
 
     function closeNewTaskForm() {
         let taskFormCreation = document.querySelector('.taskFormCreation');
@@ -41,16 +41,16 @@ const discardNewTask = function(){
     }
 }
 
-const clearPriorityForm = function(){
+const clearPriorityForm = function() {
     let formT = document.querySelector('#newTaskForm');
-    const clearPF = (function(form, name){
+    const clearPF = (function(form, name) {
         let radios = form.elements[name];
-        for (let i=0;i<radios.length; i++) {
-            if ( radios[i].checked ) {
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
                 radios[i].checked = false
             }
         }
-    })(formT,"priority");
+    })(formT, "priority");
 }
 
 export {clearPriorityForm}
