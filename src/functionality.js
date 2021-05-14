@@ -166,7 +166,7 @@ import {format, parseISO} from 'date-fns';
 
         let title = document.querySelector('#taskTitle');
         let description = document.querySelector('#taskDescription');
-        let schedule = document.querySelector('#taskDate');
+        let schedule = document.querySelector('#taskSchedule');
 
         function addingTask() {
             if (title.value != "" && schedule.value != "") {
@@ -267,9 +267,8 @@ import {format, parseISO} from 'date-fns';
             let modifyCategory = document.querySelector('#modifyCategory');
             modifyCategory.value = myTaskCategory.innerHTML;
             let modifySchedule = document.querySelector('#modifySchedule');
-            // let d = format(parseISO(myTaskSchedule.innerHTML), 'yyyy-MM-dd');
-            // console.log(d)
-            // modifySchedule.value = d;
+            let d2 = format(new Date, 'yyyy-MM-dd');
+            modifySchedule.value = d2;
 
             //those are control values
             let newTitle = document.querySelector('#modifyTitle');
