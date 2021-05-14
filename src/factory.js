@@ -1,4 +1,4 @@
-const tasksGeneral = [];
+const tasksArray = [];
 
 function Task(title, description, schedule, category, priority) {
     this.title = title;
@@ -21,5 +21,5 @@ listOfCategories.push(inbox);
 
 export {Category}
 export {listOfCategories}
-export {tasksGeneral}
+export {tasksArray}
 export {Task}
